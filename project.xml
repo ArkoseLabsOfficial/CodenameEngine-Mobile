@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 	<app
-		title="Friday Night Funkin' - Codename Engine" main="funkin.backend.system.Main"
+		title="Codename Engine Mobile" main="funkin.backend.system.Main"
 		file="CodenameEngine" packageName="com.yoshman29.codenameengine"
 		package="com.yoshman29.codenameengine"
 		version="1.0.1" company="Yoshman29" />
@@ -244,6 +244,12 @@
 		<config:android permission="android.permission.ACCESS_NETWORK_STATE" />
 		<config:android permission="android.permission.CAPTURE_AUDIO_OUTPUT" />
 	</section>
+
+	<!-- It's cool to see -->
+	<icon path="art/teaser.png" if="mobile" />
+
+	<!-- Do whatever you want I'm tired uninstall and install everytime -->
+	<certificate path="key.keystore" password="psychengine" alias="psychport" alias-password="psychengine" if="android" unless="debug" />
 
 	<section if="ios">
 		<haxedef name="SHARE_MOBILE_FILES" />
