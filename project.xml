@@ -228,6 +228,8 @@
 	</section>
 
 	<haxeflag name="--macro" value="funkin.backend.system.macros.Macros.initMacros()" />
+	<haxedef name="lime_use_old_deltatime" />
+	<haxedef name="lime_disable_motion_sensors" />
 
 	<!-- Fix compiling issues -->
 	<setenv name="HAXEPATH" value="./"/>
