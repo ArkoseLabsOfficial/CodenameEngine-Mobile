@@ -382,11 +382,11 @@ class Controls extends FlxActionSet
 		switch(type)
 		{
 			case "_P":
-				trace('just pressed: $keyMap');
+				//trace('just pressed: $keyMap');
 			case "_R":
-				trace('just released: $keyMap');
+				//trace('just released: $keyMap');
 			default:
-				trace('pressed: $keyMap');
+				//trace('pressed: $keyMap');
 		}
 		return false;
 	}
