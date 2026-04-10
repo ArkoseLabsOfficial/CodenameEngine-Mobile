@@ -50,7 +50,14 @@ jobs:
           haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_HOME
           haxelib run lime config JAVA_HOME $JAVA_HOME_17_X64
           haxelib run lime config ANDROID_SETUP true
-          haxelib set lime git # use git one instead of 8.3.1.
+      - name: Fix Haxelib
+        run: |
+          haxelib set lime git
+          haxelib set hxcpp git
+          haxelib set flixel git
+          haxelib set flixel-addons git
+          haxelib set flixel-animate git
+          haxelib set hxdiscord_rpc git
       - name: Building the game
         run: |
           haxelib run lime build android -final -D ONLY_ARM64
