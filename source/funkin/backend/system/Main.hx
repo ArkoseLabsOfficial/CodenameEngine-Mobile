@@ -74,7 +74,7 @@ class Main extends Sprite
 		MobileUtil.initDirectory();
 		MobileUtil.getPermissions();
 		#end
-		Sys.setCwd(MobileUtil.getDirectory());
+		Sys.setCwd(MobileUtil.getStorageDirectory());
 
 		// Languages folder
 		if (!MobileUtil.areAssetsCopied("assets/languages/"))
@@ -245,9 +245,7 @@ class Main extends Sprite
 		if (!noCwdFix && !sys.FileSystem.exists('manifest/default.json')) {
 			Sys.setCwd(haxe.io.Path.directory(Sys.programPath()));
 		}
-		#elseif android
-		Sys.setCwd(haxe.io.Path.addTrailingSlash(VERSION.SDK_INT > 30 ? Context.getObbDir() : Context.getExternalFilesDir()));
-		#elseif (ios || switch)
+		#elseif switch
 		Sys.setCwd(haxe.io.Path.addTrailingSlash(openfl.filesystem.File.applicationStorageDirectory.nativePath));
 		#end
 	}
