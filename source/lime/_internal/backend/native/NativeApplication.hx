@@ -8,12 +8,10 @@ import lime.graphics.OpenGLRenderContext;
 import lime.graphics.RenderContext;
 import lime.math.Rectangle;
 import lime.media.AudioManager;
-import lime.system.CFFI;
 import lime.system.Clipboard;
 import lime.system.Display;
 import lime.system.DisplayMode;
 import lime.system.JNI;
-import lime.system.Orientation;
 import lime.system.Sensor;
 import lime.system.SensorType;
 import lime.system.System;
@@ -51,7 +49,6 @@ class NativeApplication
 	private var gamepadEventInfo = new GamepadEventInfo();
 	private var joystickEventInfo = new JoystickEventInfo();
 	private var keyEventInfo = new KeyEventInfo();
-	private var orientationEventInfo = new OrientationEventInfo();
 	private var mouseEventInfo = new MouseEventInfo();
 	private var renderEventInfo = new RenderEventInfo(RENDER);
 	private var sensorEventInfo = new SensorEventInfo();
@@ -61,10 +58,6 @@ class NativeApplication
 	private var windowEventInfo = new WindowEventInfo();
 
 	public var handle:Dynamic;
-
-	#if android
-	private var deviceOrientationListener:OrientationChangeListener;
-	#end
 
 	private var pauseTimer:Int;
 	private var parent:Application;
@@ -89,30 +82,8 @@ class NativeApplication
 		Sensor.registerSensor(SensorType.ACCELEROMETER, 0);
 		#end
 
-		/*
-		#if android
-		var setDeviceOrientationListener = JNI.createStaticMethod("org/haxe/lime/GameActivity", "setDeviceOrientationListener",
-			"(Lorg/haxe/lime/HaxeObject;)V");
-		deviceOrientationListener = new OrientationChangeListener(handleJNIOrientationEvent);
-		setDeviceOrientationListener(deviceOrientationListener);
-		#end
-		*/
-
 		#if (!macro && lime_cffi)
 		handle = NativeCFFI.lime_application_create();
-		#end
-
-
-		#if (!lime_disable_motion_sensors && (ios || android))
-		final accelerometerID:Int = NativeCFFI.lime_system_get_first_accelerometer_sensor_id();
-
-		if (accelerometerID > 0)
-			Sensor.registerSensor(SensorType.ACCELEROMETER, accelerometerID);
-
-		final gyroscopeID:Int = NativeCFFI.lime_system_get_first_gyroscope_sensor_id();
-
-		if (gyroscopeID > 0)
-			Sensor.registerSensor(SensorType.GYROSCOPE, gyroscopeID);
 		#end
 	}
 
@@ -145,9 +116,6 @@ class NativeApplication
 		NativeCFFI.lime_text_event_manager_register(handleTextEvent, textEventInfo);
 		NativeCFFI.lime_touch_event_manager_register(handleTouchEvent, touchEventInfo);
 		NativeCFFI.lime_window_event_manager_register(handleWindowEvent, windowEventInfo);
-		#if (ios || android)
-		NativeCFFI.lime_orientation_event_manager_register(handleOrientationEvent, orientationEventInfo);
-		#end
 		#if (ios || android || tvos)
 		NativeCFFI.lime_sensor_event_manager_register(handleSensorEvent, sensorEventInfo);
 		#end
@@ -193,15 +161,6 @@ class NativeApplication
 
 		#if (!macro && lime_cffi)
 		NativeCFFI.lime_application_quit(handle);
-		#end
-	}
-
-	public function getDeviceOrientation():Orientation
-	{
-		#if (!macro && lime_cffi)
-		return cast NativeCFFI.lime_system_get_device_orientation();
-		#else
-		return UNKNOWN;
 		#end
 	}
 
@@ -394,27 +353,6 @@ class NativeApplication
 		}
 	}
 
-	private function handleOrientationEvent():Void
-	{
-		var orientation:Orientation = cast orientationEventInfo.orientation;
-		var display = orientationEventInfo.display;
-		switch (orientationEventInfo.type)
-		{
-			case DISPLAY_ORIENTATION_CHANGE:
-				parent.onDisplayOrientationChange.dispatch(display, orientation);
-			case DEVICE_ORIENTATION_CHANGE:
-				parent.onDeviceOrientationChange.dispatch(orientation);
-		}
-	}
-
-	#if android
-	private function handleJNIOrientationEvent(newOrientation:Int):Void
-	{
-		var orientation:Orientation = cast newOrientation;
-		parent.onDeviceOrientationChange.dispatch(orientation);
-	}
-	#end
-
 	private function handleRenderEvent():Void
 	{
 		// TODO: Allow windows to render independently
@@ -472,7 +410,7 @@ class NativeApplication
 
 	private function handleSensorEvent():Void
 	{
-		var sensor = Sensor.__sensorByID.get(sensorEventInfo.id);
+		var sensor = Sensor.sensorByID.get(sensorEventInfo.id);
 
 		if (sensor != null)
 		{
@@ -687,10 +625,10 @@ class NativeApplication
 
 @:keep /*private*/ class ApplicationEventInfo
 {
-	public var deltaTime:#if lime_use_old_deltatime Int #else Float #end;
+	public var deltaTime:Int;
 	public var type:ApplicationEventType;
 
-	public function new(type:ApplicationEventType = null, deltaTime:#if lime_use_old_deltatime Int #else Float #end = 0)
+	public function new(type:ApplicationEventType = null, deltaTime:Int = 0)
 	{
 		this.type = type;
 		this.deltaTime = deltaTime;
@@ -1040,48 +978,4 @@ class NativeApplication
 	var WINDOW_RESTORE = 12;
 	var WINDOW_SHOW = 13;
 	var WINDOW_HIDE = 14;
-}
-
-@:keep /*private*/ class OrientationEventInfo
-{
-	public var orientation:Int;
-	public var display:Int;
-	public var type:OrientationEventType;
-
-	public function new(type:OrientationEventType = null, orientation:Int = 0, display:Int = -1)
-	{
-		this.type = type;
-		this.orientation = orientation;
-		this.display = display;
-	}
-
-	public function clone():OrientationEventInfo
-	{
-		return new OrientationEventInfo(type, orientation, display);
-	}
-}
-
-#if (haxe_ver >= 4.0) private enum #else @:enum private #end abstract OrientationEventType(Int)
-{
-	var DISPLAY_ORIENTATION_CHANGE = 0;
-	var DEVICE_ORIENTATION_CHANGE = 1;
-}
-
-private class OrientationChangeListener #if (android && !macro) implements JNISafety #end
-{
-	private var callback:Int->Void;
-
-	public function new(callback:Int->Void)
-	{
-		this.callback = callback;
-	}
-
-	#if (android && !macro)
-	@:runOnMainThread
-	#end
-	@:keep
-	public function onOrientationChanged(orientation:Int):Void
-	{
-		callback(orientation);
-	}
 }

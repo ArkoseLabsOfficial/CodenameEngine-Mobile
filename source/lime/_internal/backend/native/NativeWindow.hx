@@ -1,6 +1,5 @@
 package lime._internal.backend.native;
 
-import lime.ui.WindowVSyncMode;
 import haxe.io.Bytes;
 import lime._internal.backend.native.NativeCFFI;
 import lime.app.Application;
@@ -16,7 +15,6 @@ import lime.graphics.OpenGLRenderContext;
 import lime.graphics.RenderContext;
 import lime.math.Rectangle;
 import lime.math.Vector2;
-import lime.system.CFFI;
 import lime.system.Display;
 import lime.system.DisplayMode;
 import lime.system.JNI;
@@ -182,30 +180,6 @@ class NativeWindow
 
 		setFrameRate(Reflect.hasField(attributes, "frameRate") ? attributes.frameRate : 60);
 		#end
-	}
-
-	public function setVSyncMode(mode:WindowVSyncMode):Bool
-	{
-		if (handle != null)
-		{
-			#if (!macro && lime_cffi)
-			return NativeCFFI.lime_window_set_vsync_mode(handle, mode);
-			#end
-		}
-
-		return false;
-	}
-
-	public function getNativeHandle():Dynamic
-	{
-		if (handle != null)
-		{
-			#if (!macro && lime_cffi)
-			return NativeCFFI.lime_window_get_handle(handle);
-			#end
-		}
-
-		return null;
 	}
 
 	public function alert(message:String, title:String):Void
