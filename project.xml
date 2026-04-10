@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
-	<!-- ___ Build with spesific libraries ___ -->
-	<architecture exclude="armv7" if="ONLY_ARM64" />
-	<architecture exclude="armeabi-v7a" if="ONLY_ARM64" />
-	<architecture exclude="arm64" if="ONLY_ARMV7" />
-	<architecture exclude="arm64-v8a" if="ONLY_ARMV7" />
-
 	<app
 		title="Codename Engine Mobile" main="funkin.backend.system.Main"
 		file="CodenameEngine" packageName="com.yoshman29.codenameengine"
@@ -236,17 +230,31 @@
 
 	<haxeflag name="--macro" value="funkin.backend.system.macros.Macros.initMacros()" />
 
+	<section if="android">
+		<config:android permission="android.permission.MANAGE_MEDIA"/> 
+		<config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+		<config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
+		<config:android permission="android.permission.READ_EXTERNAL_STORAGE" />
+		<config:android permission="android.permission.READ_MEDIA_IMAGES"/>
+		<config:android permission="android.permission.READ_MEDIA_AUDIO"/>
+		<config:android permission="android.permission.READ_MEDIA_VIDEO"/>
+		<config:android permission="android.permission.VIBRATE" />
+		<config:android permission="android.permission.INTERNET" />
+		<config:android permission="android.permission.ACCESS_WIFI_STATE"/>
+		<config:android permission="android.permission.ACCESS_NETWORK_STATE" />
+		<config:android permission="android.permission.CAPTURE_AUDIO_OUTPUT" />
+	</section>
+
 	<!-- It's cool to see -->
 	<icon path="art/teaser.png" if="mobile" />
 
 	<!-- Do whatever you want I'm tired uninstall and install everytime -->
 	<certificate path="key.keystore" password="psychengine" alias="psychport" alias-password="psychengine" if="android" unless="debug" />
 
-	<!-- Category Type for Apple Systems -->
-	<config:ios category_type="public.app-category.music-games" />
-	<config:mac category_type="public.app-category.music-games" />
-	<haxedef name="lime_use_old_deltatime" />
-	<haxedef name="lime_disable_motion_sensors" />
+	<section if="ios">
+		<haxedef name="SHARE_MOBILE_FILES" />
+		<config:ios category_type="public.app-category.music-games" />
+	</section>
 
 	<!-- Fix compiling issues -->
 	<setenv name="HAXEPATH" value="./"/>

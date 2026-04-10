@@ -20,7 +20,8 @@ class ScriptedAssetLibrary extends ModsFolderLibrary {
 	public var scriptName:String;
 	private static var nullValue:Dynamic = {};
 
-	public function new(scriptName:String, args:Array<Dynamic> = null, basePath:String="./assets/", libName:String="assets", ?modName:String) {
+	public function new(scriptName:String, args:Array<Dynamic> = null, basePath:String=null, libName:String="assets", ?modName:String) {
+		if(basePath == null) basePath = #if mobile MobileUtil.getDirectory() + #end "./assets/";
 		if(modName == null) modName = scriptName;
 		super(basePath, libName, modName);
 		this.scriptName = scriptName;

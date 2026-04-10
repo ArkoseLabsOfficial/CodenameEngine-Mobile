@@ -69,6 +69,26 @@ class Main extends Sprite
 
 		instance = this;
 
+		#if mobile
+		#if android
+		MobileUtil.initDirectory();
+		MobileUtil.getPermissions();
+		#end
+		Sys.setCwd(StorageUtil.getStorageDirectory());
+
+		// Languages folder
+		if (!MobileUtil.areAssetsCopied("assets/languages/"))
+			MobileUtil.copyAssetsFromAPK("assets/languages/");
+
+		// Data folder
+		if (!MobileUtil.areAssetsCopied("assets/data/"))
+			MobileUtil.copyAssetsFromAPK("assets/data/");
+
+		// Songs folder
+		if (!MobileUtil.areAssetsCopied("assets/songs/")) 
+			MobileUtil.copyAssetsFromAPK("assets/songs/");
+		#end
+
 		CrashHandler.init();
 
 		addChild(game = new FunkinGame(gameWidth, gameHeight, MainState, Options.framerate, Options.framerate, skipSplash, startFullscreen));
