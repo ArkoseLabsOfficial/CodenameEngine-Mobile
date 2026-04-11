@@ -20,7 +20,7 @@ class ControlsMacro
 	static var _keySet: Map<String, String> = null;
 	static var _internalMap: Map<String, String> = null;
 
-	var ignoredFields = [
+	static var ignoredFields = [
 		"mobileC", 
 		"isInSubstate", 
 		"requestedHitbox", 
