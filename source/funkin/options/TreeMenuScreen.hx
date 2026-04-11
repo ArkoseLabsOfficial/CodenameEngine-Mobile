@@ -166,15 +166,15 @@ class TreeMenuScreen extends FlxSpriteGroup {
 		else parent.removeMenu(this);
 
 		CoolUtil.playMenuSFX(CANCEL).persist = true;
-	}
 
-	if (prevMenuTPadModes.length > 0)
-	{
-		final state = MusicBeatState.instance;
-		state.removeMobilePad();
+		if (prevMenuMPadModes.length > 0)
+		{
+			final state = MusicBeatState.instance;
+			state.removeMobilePad();
 
-		state.addMobilePad(prevMenuMPadModes[0], prevMenuMPadModes[1]);
-		state.addMobilePadCamera();
+			state.addMobilePad(prevMenuMPadModes[0], prevMenuMPadModes[1]);
+			state.addMobilePadCamera();
+		}
 	}
 
 	public function changeSelection(change:Int, force:Bool = false) {
