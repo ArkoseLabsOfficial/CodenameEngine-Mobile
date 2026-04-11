@@ -59,6 +59,7 @@ class MobileConfig {
 					{
 						setModMap('$moddyFolder/HitboxModes', hitboxModes, HITBOX);
 					}
+					#end
 			}
 		}
 	}
@@ -176,18 +177,6 @@ typedef HitboxData =
 	topColor:String,
 	topReturnKey:String,
 	topExtraKeyMode:Null<Int>,
-	//Middle
-	middlePosition:Array<Float>,
-	middleScale:Array<Int>,
-	middleColor:String,
-	middleReturnKey:String,
-	middleExtraKeyMode:Null<Int>,
-	//Bottom
-	bottomPosition:Array<Float>,
-	bottomScale:Array<Int>,
-	bottomColor:String,
-	bottomReturnKey:String,
-	bottomExtraKeyMode:Null<Int>
 }
 
 

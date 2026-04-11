@@ -48,17 +48,6 @@ class FunkinHitbox extends Hitbox {
 			if (buttonData.buttonUniqueID == null) buttonUniqueID = -1; // -1 means not setted.
 
 			if (Options.hitboxPos) {
-				if (buttonData.bottomPosition != null) {
-					buttonX = buttonData.bottomPosition[0];
-					buttonY = buttonData.bottomPosition[1];
-				}
-				if (buttonData.bottomScale != null) {
-					buttonWidth = buttonData.bottomScale[0];
-					buttonHeight = buttonData.bottomScale[1];
-				}
-				if (buttonData.bottomColor != null) buttonColor = buttonData.bottomColor;
-				if (buttonData.bottomReturnKey != null) buttonReturn = buttonData.bottomReturnKey;
-			} else {
 				if (buttonData.topPosition != null) {
 					buttonX = buttonData.topPosition[0];
 					buttonY = buttonData.topPosition[1];
