@@ -32,7 +32,7 @@ class LanguageRadio extends RadioButton {
 
 class LanguageOptions extends TreeMenuScreen {
 	public override function new() {
-		super('optionsTree.language-name', 'optionsTree.language-desc', 'LanguageOptions.');
+		super('optionsTree.language-name', 'optionsTree.language-desc', 'LanguageOptions.', ['UP_DOWN', 'A_B']);
 
 		for (lang in TranslationUtil.foundLanguages) {
 			var split = lang.split("/");

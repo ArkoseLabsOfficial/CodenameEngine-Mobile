@@ -4,7 +4,7 @@ import funkin.savedata.FunkinSave;
 
 class MiscOptions extends TreeMenuScreen {
 	public function new() {
-		super('optionsTree.miscellaneous-name', 'optionsTree.miscellaneous-desc', 'MiscOptions.');
+		super('optionsTree.miscellaneous-name', 'optionsTree.miscellaneous-desc', 'MiscOptions.', ['UP_DOWN', 'A_B']);
 
 		add(new Checkbox(getNameID('devMode'), getDescID('devMode'), 'devMode'));
 		add(new Checkbox(getNameID('allowConfigWarning'), getDescID('allowConfigWarning'), 'allowConfigWarning'));

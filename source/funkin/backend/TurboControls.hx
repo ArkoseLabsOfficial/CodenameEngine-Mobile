@@ -55,10 +55,10 @@ class TurboControls extends TurboBasic {
 
 	override function get_pressed() {
 		if (allPress) {
-			for (control in controls) if (!controlsInstance.getActionFromControl(control).check()) return false;
+			for (control in controls) if (!(controlsInstance.getActionFromControl(control).check() || controlsInstance.mobilePadPressed(Std.string(control)))) return false;
 		}
 		else {
-			for (control in controls) if (controlsInstance.getActionFromControl(control).check()) return true;
+			for (control in controls) if (controlsInstance.getActionFromControl(control).check() || controlsInstance.mobilePadPressed(Std.string(control))) return true;
 		}
 		return allPress;
 	}
@@ -115,6 +115,26 @@ class TurboButtons extends TurboBasic {
 		}
 		else {
 			for (input in inputs) if (gamepad.checkStatus(input, PRESSED)) return true;
+		}
+		return allPress;
+	}
+}
+
+class TurboMobileButton extends TurboBasic {
+	public var buttons:Array<String>;
+	public function new(buttons:Array<String>, ?delay:Float, ?interval:Float, ?allPress:Bool) {
+		super(delay, interval, allPress);
+		this.buttons = buttons;
+	}
+
+	override function get_pressed() {
+		if (MobileInputHandler.instance == null || MobileInputHandler.instance != null && !MobileInputHandler.instance.exists) return false;
+
+		if (allPress) {
+			for (button in buttons) if (!MobileInputManager.instance.checkButtonsState(button, PRESSED)) return false;
+		}
+		else {
+			for (button in buttons) if (MobileInputManager.instance.checkButtonsState(button, PRESSED)) return true;
 		}
 		return allPress;
 	}

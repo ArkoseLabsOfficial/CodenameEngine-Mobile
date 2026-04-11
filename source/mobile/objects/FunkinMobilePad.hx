@@ -9,6 +9,14 @@ import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 
 class FunkinMobilePad extends MobilePad {
+	public var curDPadMode(default, null):String = "NONE";
+	public var curActionMode(default, null):String = "NONE";
+	public function new(DPad:String = "NONE", Action:String = "NONE", buttonCreation:Bool = true) {
+		super(DPad, Action, buttonCreation);
+		curDPadMode = DPad;
+		curActionMode = Action;
+	}
+
 	override public function createVirtualButton(x:Float, y:Float, framePath:String, ?scale:Float = 1.0, ?ColorS:Int = 0xFFFFFF, ?returned:String):MobileButton {
 		var frames:FlxGraphic;
 		var buttonLabelGraphicPath:String = "";

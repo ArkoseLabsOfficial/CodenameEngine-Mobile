@@ -103,6 +103,9 @@ class OptionsMenu extends TreeMenu {
 				if (access != null) for (o in parseOptionsFromXML(first, access)) first.add(o);
 			}
 		}
+
+		addMobilePad("UP_DOWN", "A_B");
+		addMobilePadCamera();
 	}
 
 	function checkDebugOption() {

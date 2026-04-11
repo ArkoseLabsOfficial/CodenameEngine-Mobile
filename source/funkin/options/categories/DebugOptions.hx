@@ -2,7 +2,7 @@ package funkin.options.categories;
 
 class DebugOptions extends TreeMenuScreen {
 	public function new() {
-		super('DebugOptions.title', 'DebugOptions.desc', 'DebugOptions.');
+		super('DebugOptions.title', 'DebugOptions.desc', 'DebugOptions.', ['LEFT_FULL', 'A_B']);
 
 		#if windows
 		add(new TextOption(getNameID("showConsole"), getDescID("showConsole"), () -> funkin.backend.utils.NativeAPI.allocConsole()));
