@@ -399,9 +399,6 @@ class Controls extends FlxActionSet
 	public var requestedInstance(get, default):Dynamic; // is set to MusicBeatState or MusicBeatSubstate when the constructor is called
 
 	@:nullSafety(Off)
-	public var requestedHitbox(get, default):FunkinHitbox; // for PlayState
-
-	@:nullSafety(Off)
 	public var mobileC(get, never):Bool;
 
 	private function mobilePadPressed(keys:Array<String>):Bool
@@ -433,8 +430,8 @@ class Controls extends FlxActionSet
 
 	private function hitboxPressed(keys:Array<String>):Bool
 	{
-		if (keys != null && requestedHitbox != null)
-			if (requestedHitbox.pressed(keys))
+		if (keys != null && requestedInstance?.mobileManager?.hitbox != null)
+			if (requestedInstance.mobileManager.hitbox.pressed(keys))
 				return true;
 
 		return false;
@@ -442,8 +439,8 @@ class Controls extends FlxActionSet
 
 	private function hitboxJustPressed(keys:Array<String>):Bool
 	{
-		if (keys != null && requestedHitbox != null)
-			if (requestedHitbox.justPressed(keys))
+		if (keys != null && requestedInstance?.mobileManager?.hitbox != null)
+			if (requestedInstance.mobileManager.hitbox.justPressed(keys))
 				return true;
 
 		return false;
@@ -451,8 +448,8 @@ class Controls extends FlxActionSet
 
 	private function hitboxJustReleased(keys:Array<String>):Bool
 	{
-		if (keys != null && requestedHitbox != null)
-			if (requestedHitbox.justReleased(keys))
+		if (keys != null && requestedInstance?.mobileManager?.hitbox != null)
+			if (requestedInstance.mobileManager.hitbox.justReleased(keys))
 				return true;
 
 		return false;
@@ -465,12 +462,6 @@ class Controls extends FlxActionSet
 			return MusicBeatSubstate.instance;
 		else
 			return MusicBeatState.instance;
-	}
-
-	@:noCompletion
-	private function get_requestedHitbox():FunkinHitbox
-	{
-		return requestedInstance.mobileManager.hitbox;
 	}
 
 	@:noCompletion

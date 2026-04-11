@@ -21,9 +21,8 @@ class ControlsMacro
 	static var _internalMap: Map<String, String> = null;
 
 	static var ignoredFields = [
-		"mobileC", 
-		"isInSubstate", 
-		"requestedHitbox", 
+		"mobileC",
+		"isInSubstate",
 		"requestedInstance",
 	];
 
