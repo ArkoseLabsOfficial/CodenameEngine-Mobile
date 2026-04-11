@@ -32,6 +32,14 @@ class TitleState extends MusicBeatState
 
 		startIntro();
 
+		MobileConfig.init('MobileControls', "ArkoseLabs/CodenameEngine", 'mobile/',
+			[
+				['MobilePad/DPadModes', ButtonModes.DPAD],
+				['MobilePad/ActionModes', ButtonModes.ACTION],
+				['Hitbox/HitboxModes', ButtonModes.HITBOX]
+			]
+		);
+
 		super.create();
 
 		DiscordUtil.call("onMenuLoaded", ["Title Screen"]);

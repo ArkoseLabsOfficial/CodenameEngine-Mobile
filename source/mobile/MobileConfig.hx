@@ -31,7 +31,7 @@ class MobileConfig {
 		for (folder in folders) {
 			switch (folder[1]) {
 				case ACTION:
-					setDefaultMap('assets/mobile/MobilePad/ActionModes', actionModes, ACTION);
+					setDefaultMap('assets/' + mobileFolderPath + folder[0], actionModes, ACTION);
 					#if MOD_SUPPORT
 					final moddyFolder:String = (ModsFolder.currentModFolder != null
 						&& ModsFolder.currentModFolder != "default") ? '${ModsFolder.modsPath}${ModsFolder.currentModFolder}/mobile/MobilePad' : '';
@@ -41,7 +41,7 @@ class MobileConfig {
 					}
 					#end
 				case DPAD:
-					setDefaultMap('assets/mobile/MobilePad/DPadModes', dpadModes, DPAD);
+					setDefaultMap('assets/' + mobileFolderPath + folder[0], dpadModes, DPAD);
 					#if MOD_SUPPORT
 					final moddyFolder:String = (ModsFolder.currentModFolder != null
 						&& ModsFolder.currentModFolder != "default") ? '${ModsFolder.modsPath}${ModsFolder.currentModFolder}/mobile/MobilePad' : '';
@@ -51,7 +51,7 @@ class MobileConfig {
 					}
 					#end
 				case HITBOX:
-					setDefaultMap('assets/mobile/Hitbox/HitboxModes', hitboxModes, HITBOX);
+					setDefaultMap('assets/' + mobileFolderPath + folder[0], hitboxModes, HITBOX);
 					#if MOD_SUPPORT
 					final moddyFolder:String = (ModsFolder.currentModFolder != null
 						&& ModsFolder.currentModFolder != "default") ? '${ModsFolder.modsPath}${ModsFolder.currentModFolder}/mobile/Hitbox' : '';

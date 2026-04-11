@@ -404,37 +404,33 @@ class Controls extends FlxActionSet
 	@:nullSafety(Off)
 	public var mobileC(get, never):Bool;
 
-	@:nullSafety(Off)
 	private function mobilePadPressed(keys:Array<String>):Bool
 	{
-		if (keys != null && requestedInstance.mobileManager.mobilePad != null)
+		if (keys != null && requestedInstance?.mobileManager?.mobilePad != null)
 			if (requestedInstance.mobileManager.mobilePad.pressed(keys) == true)
 				return true;
 
 		return false;
 	}
 
-	@:nullSafety(Off)
 	private function mobilePadJustPressed(keys:Array<String>):Bool
 	{
-		if (keys != null && requestedInstance.mobileManager.mobilePad != null)
+		if (keys != null && requestedInstance?.mobileManager?.mobilePad != null)
 			if (requestedInstance.mobileManager.mobilePad.justPressed(keys) == true)
 				return true;
 
 		return false;
 	}
 
-	@:nullSafety(Off)
 	private function mobilePadJustReleased(keys:Array<String>):Bool
 	{
-		if (keys != null && requestedInstance.mobileManager.mobilePad != null)
+		if (keys != null && requestedInstance?.mobileManager?.mobilePad != null)
 			if (requestedInstance.mobileManager.mobilePad.justReleased(keys) == true)
 				return true;
 
 		return false;
 	}
 
-	@:nullSafety(Off)
 	private function hitboxPressed(keys:Array<String>):Bool
 	{
 		if (keys != null && requestedHitbox != null)
@@ -444,7 +440,6 @@ class Controls extends FlxActionSet
 		return false;
 	}
 
-	@:nullSafety(Off)
 	private function hitboxJustPressed(keys:Array<String>):Bool
 	{
 		if (keys != null && requestedHitbox != null)
@@ -454,7 +449,6 @@ class Controls extends FlxActionSet
 		return false;
 	}
 
-	@:nullSafety(Off)
 	private function hitboxJustReleased(keys:Array<String>):Bool
 	{
 		if (keys != null && requestedHitbox != null)

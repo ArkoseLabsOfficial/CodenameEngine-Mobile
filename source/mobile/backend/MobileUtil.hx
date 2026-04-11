@@ -20,8 +20,6 @@ using StringTools;
 * @Authors MaysLastPlay, ArkoseLabs, MarioMaster (MasterX-39), Dechis (dx7405)
 * @version: 0.4.0
 **/
-typedef CustomStorageModeData = { modes:Array<ModeData> }
-typedef ModeData = { Name:String, Folder:String }
 class MobileUtil
 {
 	#if sys
@@ -29,57 +27,17 @@ class MobileUtil
 		return #if android haxe.io.Path.addTrailingSlash(AndroidContext.getExternalFilesDir()) #elseif ios lime.system.System.documentsDirectory #else Sys.getCwd() #end;
 
 	#if android
-	public static inline function getCustomStoragePath():String
-		return AndroidContext.getExternalFilesDir() + '/storageModes.json';
 	public static inline function getStorageTypePath():String
 		return AndroidContext.getExternalFilesDir() + '/storagetype.txt';
 
-	public static function getCustomStorageDirectories(?doNotSeperate:Bool):Array<String>
-	{
-		var curJsonFile:String = getCustomStoragePath();
-		var ArrayReturn:Array<String> = [];
-
-		if (FileSystem.exists(curJsonFile))
-		{
-			try {
-				var rawJson:String = File.getContent(curJsonFile);
-				var parsedData:CustomStorageModeData = haxe.Json.parse(rawJson);
-
-				if (parsedData.modes != null) {
-					for (mode in parsedData.modes) {
-						if (mode.Name == null || mode.Folder == null) continue;
-
-						if (doNotSeperate)
-							// Keeping the "Name|Folder" format, so initDirectory() doesn't break
-							ArrayReturn.push(mode.Name + "|" + mode.Folder);
-						else
-							ArrayReturn.push(mode.Name);
-					}
-				}
-			} catch (e:haxe.Exception) {
-				trace("Error parsing storage JSON: " + e.message);
-			}
-		}
-		return ArrayReturn;
-	}
-
 	// always force path due to haxe
-	public static var currentDirectory:String;
+	public static var currentDirectory:String = "example";
 	public static function initDirectory():String {
 		var daPath:String = '';
 		if (!FileSystem.exists(getStorageTypePath()))
 			File.saveContent(getStorageTypePath(), "EXTERNAL_OBB");
 
 		var curStorageType:String = File.getContent(getStorageTypePath());
-
-		/* Put this there because I don't want to override original paths, also brokes the normal storage system */
-		for (line in getCustomStorageDirectories(true))
-		{
-			if (line.startsWith(curStorageType) && (line != '' || line != null)) {
-				var dat = line.split("|");
-				daPath = dat[1];
-			}
-		}
 
 		/* Hardcoded Storage Types, these types cannot be changed by Custom Type */
 		switch(curStorageType) {
@@ -92,7 +50,7 @@ class MobileUtil
 			case 'EXTERNAL_DATA':
 				daPath = AndroidContext.getExternalFilesDir();
 			default: //technically not needed but here for safety -ArkoseLabs
-				if (daPath == null || daPath == '') daPath = AndroidEnvironment.getExternalStorageDirectory() + '/.' + lime.app.Application.current.meta.get('file');
+				daPath = AndroidEnvironment.getExternalStorageDirectory() + '/.' + lime.app.Application.current.meta.get('file');
 		}
 		daPath = Path.addTrailingSlash(daPath);
 		currentDirectory = daPath;
@@ -130,28 +88,6 @@ class MobileUtil
 		if (!AndroidEnvironment.isExternalStorageManager())
 			AndroidSettings.requestSetting('MANAGE_APP_ALL_FILES_ACCESS_PERMISSION');
 	}
-
-	public static var lastGettedPermission:Int;
-	public static function chmodPermission(fullPath:String) {
-		var process = new Process('stat -c %a ${fullPath}');
-		var stringOutput:String = process.stdout.readAll().toString();
-		process.close();
-		lastGettedPermission = Std.parseInt(stringOutput);
-	}
-
-	public static function chmod(permissions:Int, fullPath:String) {
-		var process = new Process('chmod -R ${permissions} ${fullPath}');
-
-		var exitCode = process.exitCode();
-		if (exitCode == 0)
-			trace('Success: Permissions for the ${fullPath} file have been set to (${permissions})');
-		else
-		{
-			var errorOutput = process.stderr.readAll().toString();
-			trace('ERROR: Request to change permissions for the (${fullPath}) file failed. Exit Code: ${exitCode}, Error: ${errorOutput}');
-		}
-		process.close();
-	}
 	#end
 
 	public static function getDirectory():String
@@ -170,7 +106,7 @@ class MobileUtil
 	 */
 	public static function save(fileName:String = 'Ye', fileExt:String = '.txt', fileData:String = 'Nice try, but you failed, try again!', ?alert:Bool = true):Void
 	{
-		final folder:String = #if android MobileUtil.getDirectory() + #else Sys.getCwd() + #end 'saves/';
+		final folder:String = #if mobile MobileUtil.getDirectory() + #end 'saves/';
 		try
 		{
 			if (!FileSystem.exists(folder))
