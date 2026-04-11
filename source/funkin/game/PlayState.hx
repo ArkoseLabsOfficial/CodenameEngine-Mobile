@@ -894,6 +894,7 @@ class PlayState extends MusicBeatState
 
 		startingSong = true;
 		addHitbox();
+		addHitboxCamera();
 		addMobilePad('NONE', 'P');
 		addMobilePadCamera();
 		hitbox.visible = true;
