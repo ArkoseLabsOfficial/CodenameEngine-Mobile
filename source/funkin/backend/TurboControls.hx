@@ -55,10 +55,10 @@ class TurboControls extends TurboBasic {
 
 	override function get_pressed() {
 		if (allPress) {
-			for (control in controls) if (!(controlsInstance.getActionFromControl(control).check() || controlsInstance.checkMobile([Std.string(control)]))) return false;
+			for (control in controls) if (!(controlsInstance.getActionFromControl(control).check() || controlsInstance.checkMobile(Std.string(control)))) return false;
 		}
 		else {
-			for (control in controls) if (controlsInstance.getActionFromControl(control).check() || controlsInstance.checkMobile([Std.string(control)])) return true;
+			for (control in controls) if (controlsInstance.getActionFromControl(control).check() || controlsInstance.checkMobile(Std.string(control))) return true;
 		}
 		return allPress;
 	}
@@ -131,10 +131,10 @@ class TurboMobileButton extends TurboBasic {
 		if (MobileInputHandler.instance == null || MobileInputHandler.instance != null && !MobileInputHandler.instance.exists) return false;
 
 		if (allPress) {
-			for (button in buttons) if (!MobileInputHandler.instance.checkButtonsState(button, PRESSED)) return false;
+			for (button in buttons) if (!MobileInputHandler.instance.checkButtonsState([button], PRESSED)) return false;
 		}
 		else {
-			for (button in buttons) if (MobileInputHandler.instance.checkButtonsState(button, PRESSED)) return true;
+			for (button in buttons) if (MobileInputHandler.instance.checkButtonsState([button], PRESSED)) return true;
 		}
 		return allPress;
 	}

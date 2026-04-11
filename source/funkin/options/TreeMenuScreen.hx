@@ -72,7 +72,7 @@ class TreeMenuScreen extends FlxSpriteGroup {
 		if (menuMPadModes != null)
 		{
 			final state = MusicBeatState.instance;
-			this.prevMenuMPadModes = [state.mobilePad.curDPadMode, state.mobilePad.curActionMode];
+			this.prevMenuMPadModes = [state.mobileManager.mobilePad.curDPadMode, state.mobileManager.mobilePad.curActionMode];
 			state.removeMobilePad();
 
 			state.addMobilePad(menuMPadModes[0], menuMPadModes[1]);
