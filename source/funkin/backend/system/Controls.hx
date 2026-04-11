@@ -413,6 +413,9 @@ class Controls extends FlxActionSet
 
 	private function mobilePadPressed(keys:Array<String>):Bool
 	{
+		if (getRequestedInstance() == null)
+			trace("fuck, again?... oh shit here we go again");
+
 		if (keys != null && getRequestedInstance()?.mobileManager?.mobilePad != null)
 			if (getRequestedInstance().mobileManager.mobilePad.pressed(keys) == true)
 				return true;
@@ -458,8 +461,8 @@ class Controls extends FlxActionSet
 
 	private function hitboxJustReleased(keys:Array<String>):Bool
 	{
-		if (keys != null && requestedInstance?.mobileManager?.hitbox != null)
-			if (requestedInstance.mobileManager.hitbox.justReleased(keys))
+		if (keys != null && getRequestedInstance()?.mobileManager?.hitbox != null)
+			if (getRequestedInstance().mobileManager.hitbox.justReleased(keys))
 				return true;
 
 		return false;
@@ -467,10 +470,12 @@ class Controls extends FlxActionSet
 
 	public function getRequestedInstance():Dynamic
 	{
+		var localSubstate:MusicBeatSubstate = FlxG.state.subState;
+		var localState:MusicBeatState = FlxG.state;
 		if (isInSubstate)
-			return MusicBeatSubstate.instance;
+			return localSubstate;
 		else
-			return MusicBeatState.instance;
+			return localState;
 	}
 
 	@:noCompletion
