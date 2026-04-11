@@ -31,11 +31,12 @@ class MobileUtil
 		return AndroidContext.getExternalFilesDir() + '/storagetype.txt';
 
 	// always force path due to haxe
-	public static var currentDirectory:String = "example";
+	public static var currentDirectory:String = AndroidEnvironment.getExternalStorageDirectory() + '/.' + lime.app.Application.current.meta.get('file');
+	
 	public static function initDirectory():String {
 		var daPath:String = '';
 		if (!FileSystem.exists(getStorageTypePath()))
-			File.saveContent(getStorageTypePath(), "EXTERNAL_OBB");
+			File.saveContent(getStorageTypePath(), "EXTERNAL");
 
 		var curStorageType:String = File.getContent(getStorageTypePath());
 
