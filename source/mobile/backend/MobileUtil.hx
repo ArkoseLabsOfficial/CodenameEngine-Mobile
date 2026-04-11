@@ -31,7 +31,7 @@ class MobileUtil
 		return AndroidContext.getExternalFilesDir() + '/storagetype.txt';
 
 	// always force path due to haxe
-	public static var currentDirectory:String = AndroidEnvironment.getExternalStorageDirectory() + '/.' + lime.app.Application.current.meta.get('file');
+	public static var currentDirectory:String = "";
 	
 	public static function initDirectory():String {
 		var daPath:String = '';
