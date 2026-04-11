@@ -407,20 +407,23 @@ class Controls extends FlxActionSet
 	public var isInSubstate:Bool = false; // don't worry about this it becomes true and false on it's own in MusicBeatSubstate
 
 	@:nullSafety(Off)
-	public var requestedInstance(get, default):Dynamic; // is set to MusicBeatState or MusicBeatSubstate when the constructor is called
-
-	@:nullSafety(Off)
 	public var mobileC(get, never):Bool;
 
 	@:nullSafety(Off)
 	private function mobilePadPressed(keys:Array<String>):Bool
 	{
-		if (getRequestedInstance() == null)
-			trace("fuck, again?... oh shit here we go again");
+		var localSubstate:MusicBeatSubstate = cast FlxG.state.subState;
+		var localState:MusicBeatState = cast FlxG.state;
+		if (localState == null) trace("state is null");
+		if (localSubstate == null) trace("Substate is null");
 
-		if (keys != null && getRequestedInstance()?.mobileManager?.mobilePad != null)
-			if (getRequestedInstance().mobileManager.mobilePad.pressed(keys) == true)
+		if (isInSubstate && keys != null && localSubstate?.mobileManager?.mobilePad != null) {
+			if (localSubstate.mobileManager.mobilePad.pressed(keys) == true)
 				return true;
+		} else if (keys != null && localState?.mobileManager?.mobilePad != null) {
+			if (localState.mobileManager.mobilePad.pressed(keys) == true)
+				return true;
+		}
 
 		return false;
 	}
@@ -428,9 +431,16 @@ class Controls extends FlxActionSet
 	@:nullSafety(Off)
 	private function mobilePadJustPressed(keys:Array<String>):Bool
 	{
-		if (keys != null && getRequestedInstance()?.mobileManager?.mobilePad != null)
-			if (getRequestedInstance().mobileManager.mobilePad.justPressed(keys) == true)
+		var localSubstate:MusicBeatSubstate = cast FlxG.state.subState;
+		var localState:MusicBeatState = cast FlxG.state;
+
+		if (isInSubstate && keys != null && localSubstate?.mobileManager?.mobilePad != null) {
+			if (localSubstate.mobileManager.mobilePad.justPressed(keys) == true)
 				return true;
+		} else if (keys != null && localState?.mobileManager?.mobilePad != null) {
+			if (localState.mobileManager.mobilePad.justPressed(keys) == true)
+				return true;
+		}
 
 		return false;
 	}
@@ -438,9 +448,16 @@ class Controls extends FlxActionSet
 	@:nullSafety(Off)
 	private function mobilePadJustReleased(keys:Array<String>):Bool
 	{
-		if (keys != null && getRequestedInstance()?.mobileManager?.mobilePad != null)
-			if (getRequestedInstance().mobileManager.mobilePad.justReleased(keys) == true)
+		var localSubstate:MusicBeatSubstate = cast FlxG.state.subState;
+		var localState:MusicBeatState = cast FlxG.state;
+
+		if (isInSubstate && keys != null && localSubstate?.mobileManager?.mobilePad != null) {
+			if (localSubstate.mobileManager.mobilePad.justReleased(keys) == true)
 				return true;
+		} else if (keys != null && localState?.mobileManager?.mobilePad != null) {
+			if (localState.mobileManager.mobilePad.justReleased(keys) == true)
+				return true;
+		}
 
 		return false;
 	}
@@ -448,9 +465,16 @@ class Controls extends FlxActionSet
 	@:nullSafety(Off)
 	private function hitboxPressed(keys:Array<String>):Bool
 	{
-		if (keys != null && getRequestedInstance()?.mobileManager?.hitbox != null)
-			if (getRequestedInstance().mobileManager.hitbox.pressed(keys))
+		var localSubstate:MusicBeatSubstate = cast FlxG.state.subState;
+		var localState:MusicBeatState = cast FlxG.state;
+
+		if (isInSubstate && keys != null && localSubstate?.mobileManager?.hitbox != null) {
+			if (localSubstate.mobileManager.hitbox.pressed(keys))
 				return true;
+		} else if (keys != null && localState?.mobileManager?.hitbox != null) {
+			if (localState.mobileManager.hitbox.pressed(keys))
+				return true;
+		}
 
 		return false;
 	}
@@ -458,9 +482,16 @@ class Controls extends FlxActionSet
 	@:nullSafety(Off)
 	private function hitboxJustPressed(keys:Array<String>):Bool
 	{
-		if (keys != null && getRequestedInstance()?.mobileManager?.hitbox != null)
-			if (getRequestedInstance().mobileManager.hitbox.justPressed(keys))
+		var localSubstate:MusicBeatSubstate = cast FlxG.state.subState;
+		var localState:MusicBeatState = cast FlxG.state;
+
+		if (isInSubstate && keys != null && localSubstate?.mobileManager?.hitbox != null) {
+			if (localSubstate.mobileManager.hitbox.justPressed(keys))
 				return true;
+		} else if (keys != null && localState?.mobileManager?.hitbox != null) {
+			if (localState.mobileManager.hitbox.justPressed(keys))
+				return true;
+		}
 
 		return false;
 	}
@@ -468,35 +499,18 @@ class Controls extends FlxActionSet
 	@:nullSafety(Off)
 	private function hitboxJustReleased(keys:Array<String>):Bool
 	{
-		if (keys != null && getRequestedInstance()?.mobileManager?.hitbox != null)
-			if (getRequestedInstance().mobileManager.hitbox.justReleased(keys))
-				return true;
-
-		return false;
-	}
-
-	@:nullSafety(Off)
-	public function getRequestedInstance():Dynamic
-	{
 		var localSubstate:MusicBeatSubstate = cast FlxG.state.subState;
 		var localState:MusicBeatState = cast FlxG.state;
-		if (localState == null) trace("state is null");
-		if (localSubstate == null) trace("Substate is null");
 
-		if (isInSubstate)
-			return localSubstate;
-		else
-			return localState;
-	}
+		if (isInSubstate && keys != null && localSubstate?.mobileManager?.hitbox != null) {
+			if (localSubstate.mobileManager.hitbox.justReleased(keys))
+				return true;
+		} else if (keys != null && localState?.mobileManager?.hitbox != null) {
+			if (localState.mobileManager.hitbox.justReleased(keys))
+				return true;
+		}
 
-	@:noCompletion
-	public function get_requestedInstance():Dynamic
-	{
-		trace('get function works and isInSubstate is ${isInSubstate ? "true" : "false"}');
-		if (isInSubstate)
-			return MusicBeatSubstate.instance;
-		else
-			return MusicBeatState.instance;
+		return false;
 	}
 
 	@:noCompletion
