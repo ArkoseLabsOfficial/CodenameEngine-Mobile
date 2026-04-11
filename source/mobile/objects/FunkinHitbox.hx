@@ -1,6 +1,7 @@
 package mobile.objects;
 
 import mobile.Hitbox;
+import flixel.FlxSprite;
 import openfl.display.BitmapData;
 import openfl.display.Shape;
 import openfl.geom.Matrix;

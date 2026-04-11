@@ -2,6 +2,12 @@
 import funkin.options.Options;
 import mobile.objects.FunkinHitbox;
 import mobile.objects.FunkinMobilePad;
+import funkin.backend.assets.ModsFolder;
+
+#if sys
+import sys.io.File;
+import sys.FileSystem;
+#end
 
 #if android
 import extension.androidtools.content.Context as AndroidContext;

@@ -78,7 +78,7 @@ class MobileConfig {
 					map.set(mapKey, json);
 				}
 				else if (mode == ACTION || mode == DPAD) {
-					var json:MobileButtonsData = cast Json.parse(str, file);
+					var json:MobileButtonsData = cast Json.parse(str);
 					var mapKey:String = Path.withoutDirectory(Path.withoutExtension(file));
 					map.set(mapKey, json);
 				}
@@ -131,7 +131,7 @@ class MobileConfig {
 					map.set(mapKey, json);
 				}
 				else if (mode == ACTION || mode == DPAD) {
-					var json:MobileButtonsData = cast Json.parse(str, file);
+					var json:MobileButtonsData = cast Json.parse(str);
 					var mapKey:String = Path.withoutDirectory(Path.withoutExtension(file));
 					map.set(mapKey, json);
 				}
