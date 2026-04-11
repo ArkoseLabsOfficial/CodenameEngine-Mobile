@@ -375,19 +375,29 @@ class Controls extends FlxActionSet
 		return ControlsUtil.getPressed(this, name);
 	}
 
-	@:nullSafety(Off)
 	public function checkMobile(buttonName:String, type:String):Bool
 	{
-		var keyMap:Array<String> = [buttonName.toUpperCase()];
+		if (mobileC) {
+			var keyMap:Array<String> = [buttonName.toUpperCase()];
 
-		switch(type)
-		{
-			case "_P":
-				return mobilePadJustPressed(keyMap) || hitboxJustPressed(keyMap);
-			case "_R":
-				return mobilePadJustReleased(keyMap) || hitboxJustReleased(keyMap);
-			default:
-				return mobilePadPressed(keyMap) || hitboxPressed(keyMap);
+			switch(type)
+			{
+				case "_P":
+					var p:Bool = (mobilePadJustPressed(keyMap) || hitboxJustPressed(keyMap));
+					trace('${p ? "just pressed" : "not just pressed"} the button $keyMap');
+					return p;
+				case "_R":
+					var justR:Bool = (mobilePadJustReleased(keyMap) || hitboxJustReleased(keyMap));
+					trace('${p ? "just released" : "not just released"} the button $keyMap');
+					return justR;
+				default:
+					var justP:Bool = (mobilePadPressed(keyMap) || hitboxPressed(keyMap));
+					trace('${p ? "pressed" : "not pressed"} the button $keyMap');
+					return justP;
+			}
+			trace('nothing found: $type');
+		} else {
+			trace("mobileC is broken lol");
 		}
 		return false;
 	}
