@@ -14,6 +14,9 @@ class CharacterSelection extends EditorTreeMenu {
 		super.create();
 		DiscordUtil.call("onEditorTreeLoaded", ["Character Editor"]);
 		addMenu(new CharacterSelectionScreen());
+		final state = MusicBeatState.instance;
+		state.addMobilePad("FULL", "A_B");
+		state.addMobilePadCamera();
 	}
 }
 
@@ -23,7 +26,7 @@ class CharacterSelectionScreen extends EditorTreeMenuScreen {
 	public function new() {
 		super('editor.character.name', 'characterSelection.desc', 'characterSelection.', 'newCharacter', 'newCharacterDesc', () -> {
 			parent.openSubState(new CharacterCreationScreen(createCharacter));
-		}, ["FULL", "A_B"]);
+		});
 
 		var isMods:Bool = true;
 		modsList = Character.getList(true, true);

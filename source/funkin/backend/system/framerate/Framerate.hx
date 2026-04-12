@@ -111,14 +111,14 @@ class Framerate extends Sprite {
 		debugAlpha = CoolUtil.fpsLerp(debugAlpha, debugMode > 1 ? 1 : 0, 0.5);
 		#if android
 		if(FlxG.android.justReleased.BACK){
-			sillyTimer.cancel();
+			verySillyTimer.cancel();
 			++presses;
 			if(presses >= 3){
 				debugMode = (debugMode + 1) % 3;
 				presses = 0;
 				return;
 			}
-			sillyTimer.start(0.3, (tmr:FlxTimer) -> presses = 0);
+			verySillyTimer.start(0.3, (tmr:FlxTimer) -> presses = 0);
 		}
 		#elseif ios
 		for(camera in FlxG.cameras.list) {
@@ -129,12 +129,12 @@ class Framerate extends Sprite {
 				pos.y <= FlxG.game.y + 2 + offset.y + 60)
 			{
 				if(FlxG.mouse.justPressed)
-					sillyTimer.start(0.4, (tmr:FlxTimer) -> debugMode = (debugMode + 1) % 3);
+					verySillyTimer.start(0.4, (tmr:FlxTimer) -> debugMode = (debugMode + 1) % 3);
 
 				if(FlxG.mouse.justReleased)
-					sillyTimer.cancel();
-			} else if(sillyTimer.active && !sillyTimer.finished)
-				sillyTimer.cancel();
+					verySillyTimer.cancel();
+			} else if(verySillyTimer.active && !verySillyTimer.finished)
+				verySillyTimer.cancel();
 		}
 		#end
 

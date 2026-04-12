@@ -17,6 +17,10 @@ class CharterSelection extends EditorTreeMenu {
 		DiscordUtil.call("onEditorTreeLoaded", ["Chart Editor"]);
 		addMenu(new CharterSelectionScreen());
 		bgType = 'charter';
+
+		final state = MusicBeatState.instance;
+		state.addMobilePad("FULL", "A_B");
+		state.addMobilePadCamera();
 	}
 }
 
@@ -74,7 +78,7 @@ class CharterSelectionScreen extends EditorTreeMenuScreen {
 	public function new() {
 		super('editor.chart.name', 'charterSelection.desc', 'charterSelection.', 'newSong', 'newSongDesc', #if sys () -> {
 			parent.openSubState(new SongCreationScreen(saveSong));
-		} #end, ["FULL", "A_B"]);
+		} #end);
 		freeplayList = FreeplaySonglist.get(false);
 
 		for (i => s in freeplayList.songs) add(makeSongOption(s));
