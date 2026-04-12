@@ -430,8 +430,8 @@ class Controls extends FlxActionSet
 	@:nullSafety(Off)
 	private function mobilePadPressed(keys:Array<String>):Bool
 	{
-		var localSubstate:MusicBeatSubstate = cast FlxG.state.subState;
-		var localState:MusicBeatState = cast FlxG.state;
+		var localSubstate:MusicBeatSubstate = MusicBeatSubstate.instance;
+		var localState:MusicBeatState = MusicBeatState.instance;
 		if (localState == null) trace("state is null");
 		if (localSubstate == null) trace("Substate is null");
 
@@ -449,8 +449,8 @@ class Controls extends FlxActionSet
 	@:nullSafety(Off)
 	private function mobilePadJustPressed(keys:Array<String>):Bool
 	{
-		var localSubstate:MusicBeatSubstate = cast FlxG.state.subState;
-		var localState:MusicBeatState = cast FlxG.state;
+		var localSubstate:MusicBeatSubstate = MusicBeatSubstate.instance;
+		var localState:MusicBeatState = MusicBeatState.instance;
 
 		if (isInSubstate && keys != null && localSubstate?.mobileManager?.mobilePad != null) {
 			if (localSubstate.mobileManager.mobilePad.justPressed(keys) == true)
@@ -466,8 +466,8 @@ class Controls extends FlxActionSet
 	@:nullSafety(Off)
 	private function mobilePadJustReleased(keys:Array<String>):Bool
 	{
-		var localSubstate:MusicBeatSubstate = cast FlxG.state.subState;
-		var localState:MusicBeatState = cast FlxG.state;
+		var localSubstate:MusicBeatSubstate = MusicBeatSubstate.instance;
+		var localState:MusicBeatState = MusicBeatState.instance;
 
 		if (isInSubstate && keys != null && localSubstate?.mobileManager?.mobilePad != null) {
 			if (localSubstate.mobileManager.mobilePad.justReleased(keys) == true)
@@ -483,8 +483,8 @@ class Controls extends FlxActionSet
 	@:nullSafety(Off)
 	private function hitboxPressed(keys:Array<String>):Bool
 	{
-		var localSubstate:MusicBeatSubstate = cast FlxG.state.subState;
-		var localState:MusicBeatState = cast FlxG.state;
+		var localSubstate:MusicBeatSubstate = MusicBeatSubstate.instance;
+		var localState:MusicBeatState = MusicBeatState.instance;
 
 		if (isInSubstate && keys != null && localSubstate?.mobileManager?.hitbox != null) {
 			if (localSubstate.mobileManager.hitbox.pressed(keys))
@@ -500,8 +500,8 @@ class Controls extends FlxActionSet
 	@:nullSafety(Off)
 	private function hitboxJustPressed(keys:Array<String>):Bool
 	{
-		var localSubstate:MusicBeatSubstate = cast FlxG.state.subState;
-		var localState:MusicBeatState = cast FlxG.state;
+		var localSubstate:MusicBeatSubstate = MusicBeatSubstate.instance;
+		var localState:MusicBeatState = MusicBeatState.instance;
 
 		if (isInSubstate && keys != null && localSubstate?.mobileManager?.hitbox != null) {
 			if (localSubstate.mobileManager.hitbox.justPressed(keys))
@@ -517,8 +517,8 @@ class Controls extends FlxActionSet
 	@:nullSafety(Off)
 	private function hitboxJustReleased(keys:Array<String>):Bool
 	{
-		var localSubstate:MusicBeatSubstate = cast FlxG.state.subState;
-		var localState:MusicBeatState = cast FlxG.state;
+		var localSubstate:MusicBeatSubstate = MusicBeatSubstate.instance;
+		var localState:MusicBeatState = MusicBeatState.instance;
 
 		if (isInSubstate && keys != null && localSubstate?.mobileManager?.hitbox != null) {
 			if (localSubstate.mobileManager.hitbox.justReleased(keys))

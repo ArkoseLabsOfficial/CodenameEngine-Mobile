@@ -26,6 +26,9 @@
 
 		<str id="optionsTree.debug-name">Debug Options</str>
 		<str id="optionsTree.debug-desc">Debug Options for Developer Mode.</str>
+
+		<str id="optionsTree.mobile-name">Mobile Options</str>
+		<str id="optionsTree.mobile-desc">Change Options related to Mobile Controls.</str>
 	</group>
 
 	<group name="KeybindOptions" prefix="KeybindsOptions.">
@@ -96,6 +99,26 @@
 			<str id="gpuOnlyBitmaps-name">VRAM-Only Sprites</str>
 			<str id="gpuOnlyBitmaps-desc">If checked, will only store the bitmaps in the GPU, freeing a LOT of memory (EXPERIMENTAL). Turning this off will consume a lot of memory, especially on bigger sprites. If you aren't sure, leave this on.</str>
 		</group>
+	</group>
+
+	<group name="MobileOptions" prefix="MobileOptions.">
+		<str id="extraButtons-name">Extra Buttons</str>
+		<str id="extraButtons-desc">Select how many extra buttons you prefer to have on hitbox.</str>
+
+		<str id="hitboxAlpha-name">Hitbox Opacity</str>
+		<str id="hitboxAlpha-desc">Change how opaque the Hitbox should be</str>
+
+		<str id="controlsAlpha-name">Mobile Control Opacity</str>
+		<str id="controlsAlpha-desc">Change how opaque the Mobile Controls should be</str>
+
+		<str id="hitboxType-name">Hitbox Design</str>
+		<str id="hitboxType-desc">Choose how your Hitbox should look like!</str>
+
+		<str id="hitboxMode-name">Hitbox Mode</str>
+		<str id="hitboxMode-desc">Choose your Hitbox Style! (Cannot be added custom ones for now)</str>
+
+		<str id="hitboxPos-name">Hitbox Position</str>
+		<str id="hitboxPos-desc">If checked, the Hitbox will be put at the top of the screen, otherwise will stay at the bottom.</str>
 	</group>
 
 	<group name="GameplayOptions" prefix="GameplayOptions.">

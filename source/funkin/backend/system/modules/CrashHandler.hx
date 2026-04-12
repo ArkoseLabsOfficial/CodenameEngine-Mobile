@@ -6,9 +6,15 @@ import openfl.Lib;
 import openfl.errors.Error;
 import openfl.events.ErrorEvent;
 import openfl.events.UncaughtErrorEvent;
+import lime.system.System as LimeSystem;
+import haxe.io.Path;
+#if sys
+import sys.FileSystem;
+import sys.io.File;
+#end
 
 final class CrashHandler {
-	public static function init() {
+	public static function init():Void {
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError);
 		#if cpp
 		untyped __global__.__hxcpp_set_critical_error_handler(onError);
@@ -17,7 +23,11 @@ final class CrashHandler {
 		#end
 	}
 
-	public static function onUncaughtError(e:UncaughtErrorEvent) {
+	private static function onUncaughtError(e:UncaughtErrorEvent):Void {
+		e.preventDefault();
+		e.stopPropagation();
+		e.stopImmediatePropagation();
+
 		var m:String = e.error;
 		if (Std.isOfType(e.error, Error)) {
 			var err:Error = cast e.error;
@@ -26,34 +36,51 @@ final class CrashHandler {
 			var err:ErrorEvent = cast e.error;
 			m = '${err.text}';
 		}
-		var stack = CallStack.exceptionStack();
-		var stackLabel:String = "";
+		var stack = haxe.CallStack.exceptionStack();
+		var stackBuffer = new StringBuf();
 		for(e in stack) {
 			switch(e) {
-				case CFunction: stackLabel += "Non-Haxe (C) Function";
-				case Module(c): stackLabel += 'Module ${c}';
+				case CFunction: stackBuffer.add("Non-Haxe (C) Function\n");
+				case Module(c): stackBuffer.add('Module ${c}\n');
 				case FilePos(parent, file, line, col):
 					switch(parent) {
 						case Method(cla, func):
-							stackLabel += '(${file}) ${cla.split(".").last()}.$func() - line $line';
+							stackBuffer.add('${Path.withoutExtension(file)}.$func() - line $line\n');
 						case _:
-							stackLabel += '(${file}) - line $line';
+							stackBuffer.add('${file} - line $line\n');
 					}
 				case LocalFunction(v):
-					stackLabel += 'Local Function ${v}';
+					stackBuffer.add('Local Function ${v}\n');
 				case Method(cl, m):
-					stackLabel += '${cl} - ${m}';
+					stackBuffer.add('${cl} - ${m}\n');
 			}
-			stackLabel += "\r\n";
 		}
+		var stackLabel = stackBuffer.toString();
+		#if sys
+		try
+		{
+			if (!FileSystem.exists('crash'))
+				FileSystem.createDirectory('crash');
+
+			File.saveContent('crash/' + Date.now().toString().replace(' ', '-').replace(':', "'") + '.txt', '$m\n$stackLabel');
+		}
+		catch (e:haxe.Exception)
+			trace('Couldn\'t save error message. (${e.message})');
+		#end
 
 		e.preventDefault();
 		e.stopPropagation();
 		e.stopImmediatePropagation();
 
-		NativeAPI.showMessageBox("Codename Engine Crash Handler", 'Uncaught Error:$m\n\n$stackLabel', MSG_ERROR);
-		#if sys
-		Sys.exit(1);
+		NativeAPI.showMessageBox("Error!", '$m\n$stackLabel', MSG_ERROR);
+
+		#if js
+		if (FlxG.sound.music != null)
+			FlxG.sound.music.stop();
+
+		js.Browser.window.location.reload(true);
+		#else
+		LimeSystem.exit(1);
 		#end
 	}
 

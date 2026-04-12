@@ -41,7 +41,6 @@
       "position": [0, 0],
       "topPosition": [0, 144],
       "scale": [320, 576],
-      "middleScale": [256, 720],
       "color": "0xFFC24B99"
     },
     {
@@ -49,10 +48,8 @@
       "buttonIDs": ["NOTE_DOWN"],
       "buttonUniqueID": 1,
       "position": [320, 0],
-      "middlePosition": [256, 0],
       "topPosition": [0, 144],
       "scale": [320, 576],
-      "middleScale": [256, 720],
       "color": "0xFF00FFFF"
     },
     {
@@ -60,10 +57,8 @@
       "buttonIDs": ["NOTE_UP"],
       "buttonUniqueID": 2,
       "position": [640, 0],
-      "middlePosition": [768, 0],
       "topPosition": [0, 144],
       "scale": [320, 576],
-      "middleScale": [256, 720],
       "color": "0xFF12FA05"
     },
     {
@@ -71,20 +66,16 @@
       "buttonIDs": ["NOTE_RIGHT"],
       "buttonUniqueID": 3,
       "position": [960, 0],
-      "middlePosition": [1024, 0],
       "topPosition": [0, 144],
       "scale": [320, 576],
-      "middleScale": [256, 720],
       "color": "0xFFF9393F"
     },
     {
       "button": "buttonExtra1",
       "buttonIDs": ["EXTRA_1"],
       "position": [0, 576],
-      "middlePosition": [512, 0],
       "topPosition": [0, 0],
       "scale": [1280, 144],
-      "middleScale": [256, 720],
       "color": "0xFFFF00",
       "extraKeyMode": 1
     },
@@ -92,10 +83,8 @@
       "button": "buttonExtra1",
       "buttonIDs": ["EXTRA_1"],
       "position": [0, 576],
-      "middlePosition": [512, 0],
       "topPosition": [0, 0],
       "scale": [640, 144],
-      "middleScale": [256, 360],
       "color": "0xFF0000",
       "extraKeyMode": 2
     },
@@ -103,10 +92,8 @@
       "button": "buttonExtra2",
       "buttonIDs": ["EXTRA_2"],
       "position": [640, 576],
-      "middlePosition": [512, 360],
       "topPosition": [0, 0],
       "scale": [640, 144],
-      "middleScale": [256, 360],
       "color": "0xFFFF00",
       "extraKeyMode": 2
     },
@@ -114,10 +101,8 @@
       "button": "buttonExtra1",
       "buttonIDs": ["EXTRA_1"],
       "position": [0, 576],
-      "middlePosition": [512, 0],
       "topPosition": [0, 0],
       "scale": [427, 144],
-      "middleScale": [256, 240],
       "color": "0xFF0000",
       "extraKeyMode": 3
     },
@@ -125,10 +110,8 @@
       "button": "buttonExtra2",
       "buttonIDs": ["EXTRA_2"],
       "position": [427, 576],
-      "middlePosition": [512, 240],
       "topPosition": [0, 0],
       "scale": [426, 144],
-      "middleScale": [256, 240],
       "color": "0xFFFF00",
       "extraKeyMode": 3
     },
@@ -136,10 +119,8 @@
       "button": "buttonExtra3",
       "buttonIDs": ["EXTRA_3"],
       "position": [853, 576],
-      "middlePosition": [512, 480],
       "topPosition": [0, 0],
       "scale": [427, 144],
-      "middleScale": [256, 240],
       "color": "0x0000FF",
       "extraKeyMode": 3
     },
@@ -147,10 +128,8 @@
       "button": "buttonExtra1",
       "buttonIDs": ["EXTRA_1"],
       "position": [0, 576],
-      "middlePosition": [512, 0],
       "topPosition": [0, 0],
       "scale": [320, 144],
-      "middleScale": [256, 180],
       "color": "0xFF0000",
       "extraKeyMode": 4
     },
@@ -158,10 +137,8 @@
       "button": "buttonExtra2",
       "buttonIDs": ["EXTRA_2"],
       "position": [320, 576],
-      "middlePosition": [512, 180],
       "topPosition": [0, 0],
       "scale": [320, 144],
-      "middleScale": [256, 180],
       "color": "0xFFFF00",
       "extraKeyMode": 4
     },
@@ -169,10 +146,8 @@
       "button": "buttonExtra3",
       "buttonIDs": ["EXTRA_3"],
       "position": [640, 576],
-      "middlePosition": [512, 360],
       "topPosition": [0, 0],
       "scale": [320, 144],
-      "middleScale": [256, 180],
       "color": "0x0000FF",
       "extraKeyMode": 4
     },
@@ -180,10 +155,8 @@
       "button": "buttonExtra4",
       "buttonIDs": ["EXTRA_4"],
       "position": [960, 576],
-      "middlePosition": [512, 540],
       "topPosition": [0, 0],
       "scale": [320, 144],
-      "middleScale": [256, 180],
       "color": "0x00FF00",
       "extraKeyMode": 4
     }

@@ -26,6 +26,9 @@
 
 		<str id="optionsTree.debug-name">Opzioni di Debug</str>
 		<str id="optionsTree.debug-desc">Opzioni di Debug per la Modalità Sviluppatore.</str>
+
+		<str id="optionsTree.mobile-name">Opzioni Mobile</str>
+		<str id="optionsTree.mobile-desc">Modifica le opzioni relative ai dispositivi mobili o ai controlli touch.</str>
 	</group>
 
 	<group name="KeybindOptions" prefix="KeybindsOptions.">
@@ -93,6 +96,25 @@
 			<str id="gpuOnlyBitmaps-name">Sprite VRAM-Only</str>
 			<str id="gpuOnlyBitmaps-desc">Se attivato, conserverà le bitmaps solo nella GPU, risparmiando TANTA memoria (SPERIMENTALE). Disattivare questa opzione farà consumare molta più memoria, specialmente con le sprites più grandi. Se non sei sicuro, lascia questa opzione attivata.</str>
 		</group>
+	</group>
+	<group name="MobileOptions" prefix="MobileOptions.">
+		<str id="extraButtons-name">Pulsanti Extra</str>
+		<str id="extraButtons-desc">Seleziona quanti pulsanti extra preferisci avere sull'hitbox.</str>
+
+		<str id="hitboxAlpha-name">Opacità Hitbox</str>
+		<str id="hitboxAlpha-desc">Modifica l'opacità dell'hitbox</str>
+
+		<str id="controlsAlpha-name">Opacità Controlli Mobile</str>
+		<str id="controlsAlpha-desc">Modifica l'opacità dei controlli mobile</str>
+
+		<str id="hitboxType-name">Design Hitbox</str>
+		<str id="hitboxType-desc">Scegli l'aspetto del tuo hitbox!</str>
+
+		<str id="hitboxMode-name">Modalità Hitbox</str>
+		<str id="hitboxMode-desc">Scegli lo stile del tuo hitbox! (Per ora non è possibile aggiungerne di personalizzati)</str>
+
+		<str id="hitboxPos-name">Posizione Hitbox</str>
+		<str id="hitboxPos-desc">Se selezionato, l'hitbox verrà posizionato nella parte superiore dello schermo, altrimenti rimarrà in basso.</str>
 	</group>
 	<group name="GameplayOptions" prefix="GameplayOptions.">
 		<str id="downscroll-name">Downscroll</str>

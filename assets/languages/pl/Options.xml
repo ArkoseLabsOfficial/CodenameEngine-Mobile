@@ -22,6 +22,9 @@
 
 		<str id="optionsTree.miscellaneous-name">Różnorodne</str>
 		<str id="optionsTree.miscellaneous-desc">Użyj tej kategorii aby usunąć zapis lub zmienić ustawienia silnika.</str>
+
+		<str id="optionsTree.mobile-name">Opcje Mobilne</str>
+		<str id="optionsTree.mobile-desc">Zmień opcje związane z urządzeniami mobilnymi lub sterowaniem dotykowym.</str>
 	</group>
 
 	<group name="KeybindOptions" prefix="KeybindsOptions.">
@@ -87,6 +90,27 @@
 			<str id="gpuOnlyBitmaps-desc">Jeśli włączone, utrzyma obrazy tylko w GPU, uwalniając więcej pamięci (EKSPERYMENTALNE). Wyłaczenie tego użyje o wiele więcej pamięci, szczególnie przy większych duszkach. Zostaw włączone w wypadku wątpliwości.</str>
 		</group>
 	</group>
+
+	<group name="MobileOptions" prefix="MobileOptions.">
+		<str id="extraButtons-name">Dodatkowe Przyciski</str>
+		<str id="extraButtons-desc">Wybierz, ile dodatkowych przycisków chcesz mieć na hitboxie.</str>
+
+		<str id="hitboxAlpha-name">Przezroczystość Hitboxa</str>
+		<str id="hitboxAlpha-desc">Zmień stopień przezroczystości hitboxa</str>
+
+		<str id="controlsAlpha-name">Przezroczystość Przycisków Mobilnych</str>
+		<str id="controlsAlpha-desc">Zmień stopień przezroczystości sterowania mobilnego</str>
+
+		<str id="hitboxType-name">Wygląd Hitboxa</str>
+		<str id="hitboxType-desc">Wybierz, jak ma wyglądać Twój hitbox!</str>
+
+		<str id="hitboxMode-name">Tryb Hitboxa</str>
+		<str id="hitboxMode-desc">Wybierz styl hitboxa! (Na razie nie można dodać własnych)</str>
+
+		<str id="hitboxPos-name">Pozycja Hitboxa</str>
+		<str id="hitboxPos-desc">Jeśli zaznaczone, hitbox zostanie umieszczony na górze ekranu, w przeciwnym razie pozostanie na dole.</str>
+	</group>
+
 
 	<group name="GameplayOptions" prefix="GameplayOptions.">
 		<str id="downscroll-name">Przewijanie w dół</str>

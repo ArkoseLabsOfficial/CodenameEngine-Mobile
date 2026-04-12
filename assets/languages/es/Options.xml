@@ -25,6 +25,9 @@
 		<str id="optionsTree.debug-name">Desarrollador</str>
 		<str id="optionsTree.debug-desc">Opciones para el Modo Desarrollador.</str>
 
+		<str id="optionsTree.mobile-name">Opciones Móviles</str>
+		<str id="optionsTree.mobile-desc">Cambia las opciones relacionadas con dispositivos móviles o controles táctiles.</str>
+
 		<!-- cant have debug here -->
 	</group>
 
@@ -87,6 +90,26 @@
 			<str id="gpuOnlyBitmaps-name">Sprites en GPU</str>
 			<str id="gpuOnlyBitmaps-desc">Si está activado, todos los sprites serán cargados en el GPU, liberando MUCHA memoria (EXPERIMENTAL). Desactivar esto consumirá mucha RAM, en especial con sprites grandes. Si no estás seguro, déjalo activado.</str>
 		</group>
+	</group>
+
+	<group name="MobileOptions" prefix="MobileOptions.">
+		<str id="extraButtons-name">Botones Extra</str>
+		<str id="extraButtons-desc">Selecciona cuántos botones extra prefieres tener en el hitbox.</str>
+
+		<str id="hitboxAlpha-name">Opacidad del Hitbox</str>
+		<str id="hitboxAlpha-desc">Cambia qué tan opaco debe ser el hitbox</str>
+
+		<str id="controlsAlpha-name">Opacidad de Controles Móviles</str>
+		<str id="controlsAlpha-desc">Cambia qué tan opacos deben ser los controles móviles</str>
+
+		<str id="hitboxType-name">Diseño de Hitbox</str>
+		<str id="hitboxType-desc">¡Elige cómo quieres que se vea tu hitbox!</str>
+
+		<str id="hitboxMode-name">Modo de Hitbox</str>
+		<str id="hitboxMode-desc">¡Elige tu estilo de hitbox! (No se pueden añadir personalizados por ahora)</str>
+
+		<str id="hitboxPos-name">Posición del Hitbox</str>
+		<str id="hitboxPos-desc">Si está marcado, el hitbox se colocará en la parte superior de la pantalla, de lo contrario permanecerá en la parte inferior.</str>
 	</group>
 
 	<group name="GameplayOptions" prefix="GameplayOptions.">

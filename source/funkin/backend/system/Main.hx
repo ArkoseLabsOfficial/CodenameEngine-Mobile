@@ -38,9 +38,7 @@ class Main extends Sprite
 	public static var verbose:Bool = false;
 
 	public static var scaleMode:FunkinRatioScaleMode;
-	#if !mobile
 	public static var framerateSprite:Framerate;
-	#end
 
 	var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels).
 	var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels).
@@ -77,13 +75,19 @@ class Main extends Sprite
 		Sys.setCwd(haxe.io.Path.addTrailingSlash(MobileUtil.getDirectory()));
 		MobileUtil.copyAssets(["assets/languages/", "assets/data/", "assets/songs/"]);
 		#end
+		#if android FlxG.android.preventDefaultKeys = [BACK]; #end
 
 		CrashHandler.init();
 
+		#if !web framerateSprite = new Framerate(); #end
+
 		addChild(game = new FunkinGame(gameWidth, gameHeight, MainState, Options.framerate, Options.framerate, skipSplash, startFullscreen));
 
-		#if (!mobile && !web)
-		addChild(framerateSprite = new Framerate());
+		#if !web
+		addChild(framerateSprite);
+		#if mobile
+		FlxG.stage.window.onResize.add((w:Int, h:Int) -> framerateSprite.setScale());
+		#end
 		SystemInfo.init();
 		#end
 	}
@@ -150,7 +154,7 @@ class Main extends Sprite
 		FlxG.signals.postStateSwitch.add(onStateSwitchPost);
 		FlxG.signals.postUpdate.add(onUpdate);
 
-		FlxG.mouse.useSystemCursor = true;
+		FlxG.mouse.useSystemCursor = !Controls.instance.mobileC;
 		#if DARK_MODE_WINDOW
 		if(funkin.backend.utils.NativeAPI.hasVersion("Windows 10")) funkin.backend.utils.NativeAPI.redrawWindowHeader();
 		#end

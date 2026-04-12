@@ -74,7 +74,7 @@ class CharterSelectionScreen extends EditorTreeMenuScreen {
 	public function new() {
 		super('editor.chart.name', 'charterSelection.desc', 'charterSelection.', 'newSong', 'newSongDesc', #if sys () -> {
 			parent.openSubState(new SongCreationScreen(saveSong));
-		} #end);
+		} #end, ["FULL", "A_B"]);
 		freeplayList = FreeplaySonglist.get(false);
 
 		for (i => s in freeplayList.songs) add(makeSongOption(s));

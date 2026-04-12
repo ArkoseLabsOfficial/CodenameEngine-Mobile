@@ -15,7 +15,7 @@ class CreditsCodename extends funkin.options.TreeMenuScreen {
 	public var contribFormats:Array<FlxTextFormatMarkerPair> = [];
 
 	public function new() {
-		super("Codename Engine", "credits.allContributors");
+		super("Codename Engine", "credits.allContributors", "", ['UP_DOWN', 'A_B']);
 		tryUpdating(true);
 	}
 

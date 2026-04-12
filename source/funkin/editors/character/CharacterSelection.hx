@@ -23,7 +23,7 @@ class CharacterSelectionScreen extends EditorTreeMenuScreen {
 	public function new() {
 		super('editor.character.name', 'characterSelection.desc', 'characterSelection.', 'newCharacter', 'newCharacterDesc', () -> {
 			parent.openSubState(new CharacterCreationScreen(createCharacter));
-		});
+		}, ["FULL", "A_B"]);
 
 		var isMods:Bool = true;
 		modsList = Character.getList(true, true);
