@@ -19,8 +19,7 @@ import sys.io.File;
 
 using StringTools;
 
-/** 
-* @Authors ArkoseLabs, MaysLastPlay, MarioMaster (MasterX-39), Dechis (dx7405)
+/** * @Authors ArkoseLabs, MaysLastPlay, MarioMaster (MasterX-39), Dechis (dx7405)
 * @version: 0.3.0
 **/
 
@@ -72,7 +71,7 @@ class MobileUtil {
 				try {
 					FileSystem.createDirectory(path);
 				} catch (e2:Dynamic) {
-					NativeAPI.showMessageBox('Error', "Failed to access storage. Please check your settings and enable requied permissions.");
+					NativeAPI.showMessageBox('Error', "Failed to access storage. Please check your settings and enable required permissions.");
 				}
 			}
 		}
@@ -100,12 +99,18 @@ class MobileUtil {
 		try {
 			var assetList:Array<String> = Assets.list();
 
-			var toCopy = assetList.filter(function(path) {
-				if (!StringTools.startsWith(path, "assets/")) return false;
+			var toCopy = assetList.filter(function(assetKey) {
+				var cleanPath = assetKey;
+				var colonIndex = cleanPath.indexOf(":");
+				if (colonIndex != -1) {
+					cleanPath = cleanPath.substring(colonIndex + 1);
+				}
+
+				if (!StringTools.startsWith(cleanPath, "assets/")) return false;
 				if (folders == null) return true;
 
 				for (f in folders) {
-					if (StringTools.startsWith(path, f)) return true;
+					if (StringTools.startsWith(cleanPath, f)) return true;
 				}
 				return false;
 			});
@@ -117,19 +122,25 @@ class MobileUtil {
 			}
 
 			for (i in 0...total) {
-				var assetPath = toCopy[i];
-				var relativePath = assetPath.substring(7);
-				var fullPath = Path.join([rootTarget, "assets", relativePath]);
+				var assetKey = toCopy[i];
+
+				var cleanPath = assetKey;
+				var colonIndex = cleanPath.indexOf(":");
+				if (colonIndex != -1) {
+					cleanPath = cleanPath.substring(colonIndex + 1);
+				}
+
+				var fullPath = Path.join([rootTarget, cleanPath]);
 
 				var directory = Path.directory(fullPath);
 				if (!FileSystem.exists(directory)) FileSystem.createDirectory(directory);
 
 				if (!FileSystem.exists(fullPath)) {
-					var bytes = Assets.getBytes(assetPath);
+					var bytes = Assets.getBytes(assetKey);
 					if (bytes != null) File.saveBytes(fullPath, bytes);
 				}
 
-				if (onProgress != null) onProgress(relativePath, i + 1, total);
+				if (onProgress != null) onProgress(cleanPath, i + 1, total);
 			}
 
 			if (onComplete != null) onComplete();

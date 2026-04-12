@@ -73,7 +73,7 @@ class Main extends Sprite
 		MobileUtil.getPermissions();
 		#end
 		Sys.setCwd(haxe.io.Path.addTrailingSlash(MobileUtil.getDirectory()));
-		MobileUtil.copyAssets(["assets/languages/", "assets/data/", "assets/songs/"]);
+		MobileUtil.copyAssets();
 		#end
 		#if android FlxG.android.preventDefaultKeys = [BACK]; #end
 
