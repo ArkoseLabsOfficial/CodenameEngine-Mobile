@@ -200,6 +200,7 @@ class Main extends Sprite
 	}
 
 	private static function onStateSwitch() {
+	  if (!funkin.backend.system.Controls.instance.mobileC)
 		scaleMode.resetSize();
 	}
 

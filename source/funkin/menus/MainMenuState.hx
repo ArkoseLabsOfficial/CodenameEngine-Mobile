@@ -123,7 +123,7 @@ class MainMenuState extends MusicBeatState
 				}
 				*/
 			}
-			if (!Options.devMode && FlxG.keys.justPressed.SEVEN) {
+			if (!Options.devMode && controls.DEV_ACCESS) {
 				FlxG.sound.play(Paths.sound(Flags.DEFAULT_EDITOR_DELETE_SOUND));
 				if (devModeCount++ == 2) {
 					FlxTween.tween(devModeWarning, {alpha: 1}, 0.4);
@@ -146,7 +146,7 @@ class MainMenuState extends MusicBeatState
 				FlxG.switchState(new TitleState());
 
 			#if MOD_SUPPORT
-			if (controls.SWITCHMOD) {
+			if (controls.SWITCHMOD)) {
 				openSubState(new ModSwitchMenu());
 				persistentUpdate = false;
 				persistentDraw = true;
