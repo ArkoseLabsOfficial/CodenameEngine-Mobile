@@ -130,7 +130,7 @@ class UIState extends MusicBeatState {
 				camera.width = FlxG.initialWidth;
 				camera.height = FlxG.initialHeight;
 			}
-			if (Options.editorsResizable) FlxG.scaleMode = Main.scaleMode;
+			if (!funkin.backend.system.Controls.instance.mobileC) FlxG.scaleMode = Main.scaleMode;
 		}
 
 		super.destroy();
@@ -189,7 +189,7 @@ class UIState extends MusicBeatState {
 
 	public static function setResolutionAware() {
 		resolutionAware = true;
-		if (Options.editorsResizable) FlxG.scaleMode = uiScaleMode;
+		if (!funkin.backend.system.Controls.instance.mobileC) FlxG.scaleMode = uiScaleMode;
 	}
 
 	public static function playEditorSound(path:String) {

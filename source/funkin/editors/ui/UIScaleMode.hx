@@ -26,30 +26,32 @@ class UIScaleMode extends StageSizeScaleMode {
 
 	override function updateGameSize(Width:Int, Height:Int):Void
 	{
-		var ratio:Float = FlxG.width / FlxG.height;
-		var realRatio:Float = Width / Height;
+		if (!funkin.backend.system.Controls.instance.mobileC) {
+			var ratio:Float = FlxG.width / FlxG.height;
+			var realRatio:Float = Width / Height;
 
-		var scaleY:Bool = realRatio < ratio;
+			var scaleY:Bool = realRatio < ratio;
 
-		if (scaleY)
-		{
-			gameSize.x = Width;
-			gameSize.y = Math.floor(gameSize.x / ratio);
-		}
-		else
-		{
-			gameSize.y = Height;
-			gameSize.x = Math.floor(gameSize.y * ratio);
-		}
-
-		@:privateAccess {
-			for(camera in FlxG.cameras.list) {
-				camera.width = FlxG.initialWidth;
-				camera.height = FlxG.initialHeight;
+			if (scaleY)
+			{
+				gameSize.x = Width;
+				gameSize.y = Math.floor(gameSize.x / ratio);
+			}
+			else
+			{
+				gameSize.y = Height;
+				gameSize.x = Math.floor(gameSize.y * ratio);
 			}
 
-			FlxG.width = FlxG.initialWidth;
-			FlxG.height = FlxG.initialHeight;
+			@:privateAccess {
+				for(camera in FlxG.cameras.list) {
+					camera.width = FlxG.initialWidth;
+					camera.height = FlxG.initialHeight;
+				}
+
+				FlxG.width = FlxG.initialWidth;
+				FlxG.height = FlxG.initialHeight;
+			}
 		}
 	}
 }
