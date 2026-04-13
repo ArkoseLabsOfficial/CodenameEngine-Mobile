@@ -79,9 +79,9 @@ class EditorTreeMenu extends funkin.options.TreeMenu {
 
 class EditorTreeMenuScreen extends funkin.options.TreeMenuScreen {
 	public function new(name:String, desc:String, ?prefix:String, ?objects:Array<FlxSprite>,
-		?newButton:String, ?newButtonDesc:String, ?newCallback:Void->Void)
+		?newButton:String, ?newButtonDesc:String, ?newCallback:Void->Void, ?menuMPadModes:Array<String> = ["UP_DOWN", "A_B"])
 	{
-		super(name, desc, prefix, objects);
+		super(name, desc, prefix, objects, menuMPadModes);
 		if (newCallback != null) {
 			insert(0, new funkin.options.type.NewOption(getID(newButton), getID(newButtonDesc), newCallback));
 			curSelected = 1;
