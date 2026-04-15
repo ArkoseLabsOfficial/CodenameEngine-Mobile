@@ -8,8 +8,8 @@ import cpp.Float64;
 import cpp.UInt64;
 #end
 #if android
-import extension.androidtools.os.Build;
-import extension.androidtools.os.Build.VERSION;
+import android.os.Build;
+import android.os.Build.VERSION;
 #end
 
 using StringTools;

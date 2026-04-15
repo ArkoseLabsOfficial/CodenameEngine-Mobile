@@ -144,10 +144,10 @@
 
 	<haxelib name="hscript-improved" />
 	<haxelib name="mobile-controls" />
+	<haxedef name="mobile_controls_allow_mouse_clicks" if="desktop"/>
 	<haxelib name="hxdiscord_rpc" if="DISCORD_RPC"/>
 	<haxelib name="markdown" />
 	<haxelib name="hxcpp-debug-server" if="TEST_BUILD debug" />
-	<haxelib name="extension-androidtools" if="android" />
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
@@ -237,26 +237,14 @@
 
 	<haxeflag name="--macro" value="funkin.backend.system.macros.Macros.initMacros()" />
 
-	<section if="android">
-		<config:android permission="android.permission.MANAGE_MEDIA"/> 
-		<config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE"/>
-		<config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
-		<config:android permission="android.permission.READ_EXTERNAL_STORAGE" />
-		<config:android permission="android.permission.READ_MEDIA_IMAGES"/>
-		<config:android permission="android.permission.READ_MEDIA_AUDIO"/>
-		<config:android permission="android.permission.READ_MEDIA_VIDEO"/>
-		<config:android permission="android.permission.VIBRATE" />
-		<config:android permission="android.permission.INTERNET" />
-		<config:android permission="android.permission.ACCESS_WIFI_STATE"/>
-		<config:android permission="android.permission.ACCESS_NETWORK_STATE" />
-		<config:android permission="android.permission.CAPTURE_AUDIO_OUTPUT" />
-	</section>
-
 	<!-- It's cool to see -->
 	<icon path="art/teaser.png" if="mobile" />
 
 	<!-- Do whatever you want I'm tired uninstall and install everytime -->
 	<certificate path="key.keystore" password="psychengine" alias="psychport" alias-password="psychengine" if="android" unless="debug" />
+
+	<haxedef name="lime_use_old_deltatime" />
+	<haxedef name="lime_disable_motion_sensors" />
 
 	<section if="ios">
 		<haxedef name="SHARE_MOBILE_FILES" />

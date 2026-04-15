@@ -69,18 +69,17 @@ class TreeMenuScreen extends FlxSpriteGroup {
 
 		turboBasics = [leftTurboControl, rightTurboControl, upTurboControl, downTurboControl];
 
-   #if mobile
 		if (menuMPadModes != null)
 		{
 			final state = MusicBeatState.instance;
-			this.prevMenuMPadModes = [state.mobileManager.mobilePad.curDPadMode, state.mobileManager.mobilePad.curActionMode];
-			state.removeMobilePad();
+			if (state != null && state.mobileManager?.mobilePad != null) {
+				this.prevMenuMPadModes = [state.mobileManager.mobilePad.curDPadMode, state.mobileManager.mobilePad.curActionMode];
+				state.removeMobilePad();
 
-			state.addMobilePad(menuMPadModes[0], menuMPadModes[1]);
-			state.addMobilePadCamera();
+				state.addMobilePad(menuMPadModes[0], menuMPadModes[1]);
+				state.addMobilePadCamera();
+			}
 		}
-    #end
-
 
 		if (objects != null) for (object in objects) add(object);
 	}
@@ -170,16 +169,16 @@ class TreeMenuScreen extends FlxSpriteGroup {
 
 		CoolUtil.playMenuSFX(CANCEL).persist = true;
 
-    #if mobile
 		if (prevMenuMPadModes.length > 0)
 		{
 			final state = MusicBeatState.instance;
-			state.removeMobilePad();
-
-			state.addMobilePad(prevMenuMPadModes[0], prevMenuMPadModes[1]);
-			state.addMobilePadCamera();
+			if (state != null && state.mobileManager?.mobilePad != null) {
+				state.removeMobilePad();
+				state.addMobilePad(prevMenuMPadModes[0], prevMenuMPadModes[1]);
+				state.addMobilePadCamera();
+			}
+			
 		}
-		#end
 	}
 
 	public function changeSelection(change:Int, force:Bool = false) {

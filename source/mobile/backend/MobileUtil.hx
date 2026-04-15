@@ -1,10 +1,10 @@
 package mobile.backend;
 
 #if android
-import extension.androidtools.os.Build.VERSION;
-import extension.androidtools.os.Environment;
-import extension.androidtools.Permissions;
-import extension.androidtools.Settings;
+import android.os.Build.VERSION;
+import android.os.Environment;
+import android.Permissions;
+import android.Settings;
 #end
 
 import lime.system.System;
@@ -26,7 +26,9 @@ using StringTools;
 class MobileUtil {
 	public static var currentDirectory:String = null;
 	private static var useAlternativePath:Bool = false;
+	#if android
 	public static var sdk:Int = VERSION.SDK_INT;
+	#end
 
 	/**
 	 * Get the directory for the application. (External for Android Platform and Internal for iOS Platform.)

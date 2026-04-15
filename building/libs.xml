@@ -8,7 +8,7 @@
 
 		<!-- OpenFL & Lime (Required for Flixel) -->
 		<git name="openfl" url="https://github.com/CodenameCrew/cne-openfl" ref="old" />
-		<lib name="lime" version="8.1.2" />
+		<git name="lime" url="https://github.com/ArkoseLabsOfficial/lime-cne" />
 
 		<!-- Flixel -->
 		<git name="flixel" url="https://github.com/CodenameCrew/cne-flixel" ref="old" />
