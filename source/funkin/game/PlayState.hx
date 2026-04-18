@@ -892,17 +892,18 @@ class PlayState extends MusicBeatState
 			e.cameras = [camHUD];
 		#end
 
-		startingSong = true;
 		addHitbox();
-		addHitboxCamera();
+		addHitboxCamera(true);
 		addMobilePad('NONE', 'P');
-		addMobilePadCamera();
+		addMobilePadCamera(true);
 		mobileManager.hitbox.visible = false;
 		mobileManager.hitbox.forEachAlive((button) ->
 		{
 			if (getMobilePadButton("buttonP") != null)
 				button.deadZones.push(getMobilePadButton("buttonP"));
 		});
+
+		startingSong = true;
 
 		super.create();
 
