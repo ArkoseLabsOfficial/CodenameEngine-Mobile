@@ -897,7 +897,7 @@ class PlayState extends MusicBeatState
 		addHitboxCamera();
 		addMobilePad('NONE', 'P');
 		addMobilePadCamera();
-		mobileManager.hitbox.visible = true;
+		mobileManager.hitbox.visible = false;
 		mobileManager.hitbox.forEachAlive((button) ->
 		{
 			if (getMobilePadButton("buttonP") != null)
@@ -1073,6 +1073,7 @@ class PlayState extends MusicBeatState
 	@:dox(hide) function startSong():Void
 	{
 		gameAndCharsCall("onSongStart");
+		mobileManager.hitbox.visible = true;
 		startingSong = false;
 
 		inst.onComplete = endSong;
@@ -1741,6 +1742,7 @@ class PlayState extends MusicBeatState
 	public function endSong():Void
 	{
 		if (gameAndCharsEvent("onSongEnd", new CancellableEvent()).cancelled) return;
+		mobileManager.hitbox.visible = false;
 		endingSong = true;
 		canPause = false;
 		mobileManager.hitbox.visible = false;
