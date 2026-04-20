@@ -110,6 +110,12 @@
 
 		<str id="hitboxPos-name">Posición del Hitbox</str>
 		<str id="hitboxPos-desc">Si está marcado, el hitbox se colocará en la parte superior de la pantalla, de lo contrario permanecerá en la parte inferior.</str>
+
+		<str id="useExternal-name">Usar Carpeta EXTERNAL</str>
+		<str id="useExternal-desc">Al activarlo, el Engine usara el Directorio Externo para los Mods y Addons (.CodenameEngine)</str>
+
+		<str id="storageTypeChange-title">Advertencia: El Directorio ha sido cambiado!</str>
+		<str id="storageTypeChange-body">El Directorio del Engine ha sido cambiado.\nSe le requerirá reiniciar el Juego para que surga efectos.\nCualquier mod instalado previamente tendra que ser movido manualmente hacia el nuevo Directorio después del reinicio.\n\nPresiona OK para reiniciar el juego y aplicar los cambios.</str>
 	</group>
 
 	<group name="GameplayOptions" prefix="GameplayOptions.">

@@ -22,6 +22,7 @@ class Options
 	 */
 	public static var extraButtons:Int = 2;
 	public static var hitboxPos:Bool = false;
+	public static var useExternal:Bool = false;
 	public static var controlsAlpha:Float = FlxG.onMobile ? 0.6 : 0;
 	public static var hitboxType:String = "Gradient";
 	public static var hitboxMode:String = 'Normal';

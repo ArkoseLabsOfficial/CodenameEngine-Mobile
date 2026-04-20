@@ -184,7 +184,7 @@ class AssetsLibraryList extends AssetLibrary {
 
 		__defaultLibraries.push(ModsFolder.loadLibraryFromFolder('assets', '${Main.pathBack}assets/', true, SOURCE));
 		#elseif USE_ADAPTED_ASSETS
-		__defaultLibraries.push(ModsFolder.loadLibraryFromFolder('assets', #if mobile MobileUtil.getDirectory() + #end "assets/", true, SOURCE));
+		__defaultLibraries.push(ModsFolder.loadLibraryFromFolder('assets', "assets/", true, SOURCE));
 		#end
 		for (d in __defaultLibraries) addLibrary(d);
 	}

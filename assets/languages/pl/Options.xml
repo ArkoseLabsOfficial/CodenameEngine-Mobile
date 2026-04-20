@@ -109,6 +109,12 @@
 
 		<str id="hitboxPos-name">Pozycja Hitboxa</str>
 		<str id="hitboxPos-desc">Jeśli zaznaczone, hitbox zostanie umieszczony na górze ekranu, w przeciwnym razie pozostanie na dole.</str>
+
+		<str id="useExternal-name">Usa la cartella EXTERNAL</str>
+		<str id="useExternal-desc">Se selezionato, il motore utilizzerà .CodenameEngine per le cartelle delle Mod e delle Aggiunte.</str>
+
+		<str id="storageTypeChange-title">Attenzione: Il Tipo di Archiviazione è Stato Cambiato!</str>
+		<str id="storageTypeChange-body">Il Tipo di Archiviazione è stato cambiato.\nIl riavvio è richiesto in modo tale che il cambio abbia effetto.\nQualsiasi mod installata precedentemente dovrà essere spostata manualmente nel nuovo percorso del Tipo di Archiviazione dopo questo riavvio.\n\nPremi OK per resettare il gioco e applicare i cambi.</str>
 	</group>
 
 

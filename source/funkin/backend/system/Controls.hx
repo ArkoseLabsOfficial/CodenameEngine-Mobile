@@ -379,6 +379,10 @@ class Controls extends FlxActionSet
 		return ControlsUtil.getPressed(this, name);
 	}
 
+	public var controlPressedCallBack:Null<Array<String> -> Bool> = null;
+	public var controlJustPressedCallBack:Null<Array<String> -> Bool> = null;
+	public var controlJustReleasedCallBack:Null<Array<String> -> Bool> = null;
+
 	@:nullSafety(Off)
 	public function checkMobile(buttonName:String, ?type:String):Bool
 	{
@@ -409,12 +413,21 @@ class Controls extends FlxActionSet
 			{
 				case "_P", "_HOLD":
 					var p:Bool = (mobilePadJustPressed(keyMap) || hitboxJustPressed(keyMap));
+					if (!p && controlJustPressedCallBack != null)
+						p = controlJustPressedCallBack(keyMap);
+
 					return p;
 				case "_R":
 					var justR:Bool = (mobilePadJustReleased(keyMap) || hitboxJustReleased(keyMap));
+					if (!justR && controlJustReleasedCallBack != null)
+						justR = controlJustReleasedCallBack(keyMap);
+
 					return justR;
 				default:
 					var justP:Bool = (mobilePadPressed(keyMap) || hitboxPressed(keyMap));
+					if (!justP && controlPressedCallBack != null)
+						justP = controlPressedCallBack(keyMap);
+
 					return justP;
 			}
 		}

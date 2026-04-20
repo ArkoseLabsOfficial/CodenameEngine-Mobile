@@ -120,6 +120,12 @@
 
 		<str id="hitboxPos-name">Posição do Hitbox</str>
 		<str id="hitboxPos-desc">Se marcado, o hitbox será colocado no topo da tela, caso contrário permanecerá na parte inferior.</str>
+
+		<str id="useExternal-name">Usar Pasta EXTERNA</str>
+		<str id="useExternal-desc">Se marcado, a Engine vai usar .CodenameEngine para a pasta de mods e addons.</str>
+
+		<str id="storageTypeChange-title">Aviso: Tipo De Armazenamento Foi Mudado!</str>
+		<str id="storageTypeChange-body">O Tipo de Armazenamento Mudou.\nUm restart é necessário para que está ação tenha efeito.\nQualquer mod instalado antes terão que ser movidos manualmente para a nova pasta do Tipo de Armazenamento após esse restart.\n\nPressione OK para resetar o jogo e aplicar as mudanças.</str>
 	</group>
 
 	<group name="GameplayOptions" prefix="GameplayOptions.">

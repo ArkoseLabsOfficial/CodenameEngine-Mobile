@@ -115,6 +115,12 @@
 
 		<str id="hitboxPos-name">Posizione Hitbox</str>
 		<str id="hitboxPos-desc">Se selezionato, l'hitbox verrà posizionato nella parte superiore dello schermo, altrimenti rimarrà in basso.</str>
+
+		<str id="useExternal-name">Usa la cartella EXTERNAL</str>
+		<str id="useExternal-desc">Se selezionato, il motore utilizzerà .CodenameEngine per le cartelle delle Mod e delle Aggiunte.</str>
+
+		<str id="storageTypeChange-title">Attenzione: Il Tipo di Archiviazione è Stato Cambiato!</str>
+		<str id="storageTypeChange-body">Il Tipo di Archiviazione è stato cambiato.\nIl riavvio è richiesto in modo tale che il cambio abbia effetto.\nQualsiasi mod installata precedentemente dovrà essere spostata manualmente nel nuovo percorso del Tipo di Archiviazione dopo questo riavvio.\n\nPremi OK per resettare il gioco e applicare i cambi.</str>
 	</group>
 	<group name="GameplayOptions" prefix="GameplayOptions.">
 		<str id="downscroll-name">Downscroll</str>

@@ -24,7 +24,6 @@ using StringTools;
 **/
 
 class MobileUtil {
-	public static var currentDirectory:String = null;
 	private static var useAlternativePath:Bool = false;
 	#if android
 	public static var sdk:Int = VERSION.SDK_INT;
@@ -34,20 +33,26 @@ class MobileUtil {
 	 * Get the directory for the application. (External for Android Platform and Internal for iOS Platform.)
 	 * Now with automatic fallback to Android/media path if permissions fail.
 	 */
-	public static function getDirectory():String {
+	public static inline function getDirectory():String {
 		#if android
-		var paths = [
-			"/storage/emulated/0/.CodenameEngine/",
-			"/storage/emulated/0/Android/media/com.yoshman29.codenameengine/"
-		];
-
-		if (sdk >= 30) return paths[0];
-
-		return paths[1];
+		return haxe.io.Path.addTrailingSlash(Environment.getExternalStorageDirectory() + '/Android/media/com.yoshman29.codenameengine');
 		#elseif ios
-		return System.documentsDirectory;
+		return haxe.io.Path.addTrailingSlash(System.documentsDirectory);
 		#else
-		return Sys.getCwd();
+		return haxe.io.Path.addTrailingSlash(Sys.getCwd());
+		#end
+	}
+
+	public static function getModDir() {
+		#if android
+		if (funkin.options.Options.useExternal)
+			return haxe.io.Path.addTrailingSlash(Environment.getExternalStorageDirectory() + '/.CodenameEngine');
+		else
+			return haxe.io.Path.addTrailingSlash(Environment.getExternalStorageDirectory() + '/Android/media/com.yoshman29.codenameengine');
+		#elseif ios
+		return haxe.io.Path.addTrailingSlash(System.documentsDirectory);
+		#else
+		return haxe.io.Path.addTrailingSlash(Sys.getCwd());
 		#end
 	}
 

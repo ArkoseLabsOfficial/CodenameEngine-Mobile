@@ -16,7 +16,7 @@ class MobileControlManager implements IFlxDestroyable {
 	public var mobilePadCam:FlxCamera;
 	public var mobilePad:FunkinMobilePad;
 	public var joyStickCam:FlxCamera;
-	public var joyStick:JoyStick;
+	public var joyStick:FunkinJoyStick;
 	public var hitboxCam:FlxCamera;
 	public var hitbox:FunkinHitbox;
 	public var curState:Dynamic;
@@ -103,7 +103,7 @@ class MobileControlManager implements IFlxDestroyable {
 	public function makeJoyStick(x:Float = 0, y:Float = 0, ?graphic:String, ?onMove:Float->Float->Float->String->Void, size:Float = 1):Void
 	{
 		if (joyStick != null) removeJoyStick();
-		joyStick = new JoyStick(x, y, graphic, onMove);
+		joyStick = new FunkinJoyStick(x, y, graphic, onMove);
 		joyStick.scale.set(size, size);
 	}
 

@@ -119,6 +119,12 @@
 
 		<str id="hitboxPos-name">Hitbox Position</str>
 		<str id="hitboxPos-desc">If checked, the Hitbox will be put at the top of the screen, otherwise will stay at the bottom.</str>
+
+		<str id="useExternal-name">Use EXTERNAL Folder</str>
+		<str id="useExternal-desc">If checked, The engine will use .CodenameEngine for the Mods and Addons folder. (SLOW LOADING TIMES)</str>
+
+		<str id="storageTypeChange-title">Warning: Storage Type Has Been Changed!</str>
+		<str id="storageTypeChange-body">The Storage Type has been changed.\nA restart is required for this change to take effect.\nAny previously installed mods will have to be moved manually to the new Storage Types's directory after this restart.\n\nPress OK to reset the game and apply the changes.</str>
 	</group>
 
 	<group name="GameplayOptions" prefix="GameplayOptions.">
