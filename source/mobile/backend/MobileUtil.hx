@@ -35,10 +35,17 @@ class MobileUtil {
 	 */
 	public static inline function getDirectory():String {
 		#if android
-		return haxe.io.Path.addTrailingSlash(Environment.getExternalStorageDirectory() + '/Android/media/com.yoshman29.codenameengine');
+		var paths = [
+			"/storage/emulated/0/.CodenameEngine/",
+			"/storage/emulated/0/Android/media/com.yoshman29.codenameengine/"
+		];
+
+		if (sdk >= 30) return haxe.io.Path.addTrailingSlash(paths[0]);
+		return haxe.io.Path.addTrailingSlash(paths[1]);
 		#elseif ios
 		return haxe.io.Path.addTrailingSlash(System.documentsDirectory);
 		#else
+		return Sys.getCwd();
 		return haxe.io.Path.addTrailingSlash(Sys.getCwd());
 		#end
 	}
