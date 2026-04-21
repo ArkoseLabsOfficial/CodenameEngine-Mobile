@@ -14,9 +14,7 @@ class MobileOptions extends TreeMenuScreen
 	{
 		var daList:Array<String> = [];
 		daList = string.trim().split('\n');
-
-		for (i in 0...daList.length)
-			daList[i] = daList[i].trim();
+		trace(daList);
 
 		return daList;
 	}
@@ -24,6 +22,7 @@ class MobileOptions extends TreeMenuScreen
 	{
 		var daList:String = null;
 		if(Assets.exists(path)) daList = Assets.getText(path);
+		trace(daList);
 		return daList != null ? listFromString(daList) : [];
 	}
 
@@ -48,14 +47,6 @@ class MobileOptions extends TreeMenuScreen
 		super('optionsTree.mobile-name', 'optionsTree.mobile-name', 'MobileOptions.', ['LEFT_FULL', 'A_B']);
 
 		HitboxModes = mergeAllTextsNamed("assets/mobile/Hitbox/HitboxModes/hitboxModeList.txt");
-		#if MOD_SUPPORT
-		final moddyFolder:String = (ModsFolder.currentModFolder != null
-			&& ModsFolder.currentModFolder != "default") ? '${ModsFolder.modsPath}${ModsFolder.currentModFolder}/mobile/Hitbox/HitboxModes/hitboxModeList.txt' : '';
-		if (Assets.exists(moddyFolder))
-		{
-			HitboxModes = mergeAllTextsNamed(moddyFolder);
-		}
-		#end
 		if ((HitboxModes == null))
 			HitboxModes = ["Normal"];
 
