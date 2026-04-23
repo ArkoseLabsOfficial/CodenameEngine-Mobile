@@ -37,9 +37,7 @@ import mobile.objects.FunkinHitbox;
 import mobile.objects.FunkinMobilePad;
 import mobile.MobileConfig.ButtonModes;
 
-#if mobile
 import mobile.backend.MobileUtil;
-#end
 
 using StringTools;
 using funkin.backend.utils.CoolUtil;
