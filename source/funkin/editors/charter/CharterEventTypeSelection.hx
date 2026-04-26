@@ -107,8 +107,12 @@ class CharterEventTypeSelection extends UISubstateWindow {
 		buttonCameras.x = -subCam.scroll.x + Std.int(windowSpr.x+10);
 		buttonCameras.y = -subCam.scroll.y + Std.int(windowSpr.y+41);
 
+		var wheel = FlxG.mouse.wheel;
+		if (controls.mobileC)
+			wheel = ScreenUtil.touch.wheel;
+
 		if (buttons.length > 16)
-			buttonCameras.scroll.y = CoolUtil.bound(buttonCameras.scroll.y - (buttonsBG.hovered ? FlxG.mouse.wheel : 0) * 12, 0,
+			buttonCameras.scroll.y = CoolUtil.bound(buttonCameras.scroll.y - (buttonsBG.hovered ? wheel : 0) * 12, 0,
 				(buttons[buttons.length-1].y + buttons[buttons.length-1].bHeight) - buttonCameras.height);
 
 		upIndicator.setPosition((buttonsBG.bWidth/2) - (upIndicator.fieldWidth/2), 22 + (FlxMath.fastSin(sinner*2) * 4));

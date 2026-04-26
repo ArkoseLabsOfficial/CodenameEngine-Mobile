@@ -135,7 +135,7 @@ class TouchUtil {
     public var deltaScreenX(get, never):Float;
     public var deltaScreenY(get, never):Float;
     public var pinchDelta(get, never):Float;
-    public var wheel(get, never):Float;
+    public var wheel(get, never):Int;
     public var activeTouchesCount(get, never):Int;
 
     private var _lastScreenX:Map<Int, Float> = new Map();
@@ -218,7 +218,7 @@ class TouchUtil {
     }
 
     @:noCompletion
-    private function get_wheel():Float {
+    private function get_wheel():Int {
         checkSignals();
         var activeTouches = [];
         for (touch in FlxG.touches.list) {
@@ -231,7 +231,7 @@ class TouchUtil {
             #else
             var currentCenterY = (activeTouches[0].viewY + activeTouches[1].viewY) / 2;
             #end
-            return _lastTwoFingerCenterY - currentCenterY;
+            return Std.int(_lastTwoFingerCenterY - currentCenterY);
         }
         return 0;
     }
